@@ -1,0 +1,75 @@
+\hypertarget{cgnuino_8h}{}\section{src/cgnuino.h File Reference}
+\label{cgnuino_8h}\index{src/cgnuino.\+h@{src/cgnuino.\+h}}
+
+
+Header file for cgnuino library.  
+
+
+{\ttfamily \#include \char`\"{}Arduino.\+h\char`\"{}}\\*
+Include dependency graph for cgnuino.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{cgnuino_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cgnuino_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classCgnDI}{Cgn\+DI}
+\begin{DoxyCompactList}\small\item\em Offers convenient digital-\/in buffering. \end{DoxyCompactList}\item 
+class \hyperlink{classCgnDO}{Cgn\+DO}
+\begin{DoxyCompactList}\small\item\em Emits asynchroneous digital-\/out. \end{DoxyCompactList}\item 
+class \hyperlink{classCgnLogger}{Cgn\+Logger}
+\begin{DoxyCompactList}\small\item\em Logs arbitorary bit change similar to \hyperlink{classCgnDI}{Cgn\+DI} class. \end{DoxyCompactList}\item 
+class \hyperlink{classCgnPause}{Cgn\+Pause}
+\begin{DoxyCompactList}\small\item\em Temporally pauses task progression by digital-\/in pin state. \end{DoxyCompactList}\item 
+class \hyperlink{classCgnPeriod}{Cgn\+Period}
+\begin{DoxyCompactList}\small\item\em Remembers current task period and its time constraint. \end{DoxyCompactList}\item 
+class \hyperlink{classCgnSerial}{Cgn\+Serial}
+\begin{DoxyCompactList}\small\item\em Communicates with external control apprication running on the PC. \end{DoxyCompactList}\item 
+class \hyperlink{classCgnStopwatch}{Cgn\+Stopwatch}
+\begin{DoxyCompactList}\small\item\em Measures time difference in milliseconds. \end{DoxyCompactList}\item 
+class \hyperlink{classCgnStrobe}{Cgn\+Strobe}
+\begin{DoxyCompactList}\small\item\em Emits a text as one-\/by-\/one characters using (8 + 1)-\/bit digital-\/out. \end{DoxyCompactList}\item 
+class \hyperlink{classCgnValtiel}{Cgn\+Valtiel}
+\begin{DoxyCompactList}\small\item\em Monitors average length of executed loops on Arduino. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{cgnuino_8h_ab317c73e51fb8a68f86165ac831f7b8c}{countof}(array)~(sizeof(array) / sizeof(array\mbox{[}0\mbox{]}))\hypertarget{cgnuino_8h_ab317c73e51fb8a68f86165ac831f7b8c}{}\label{cgnuino_8h_ab317c73e51fb8a68f86165ac831f7b8c}
+
+\begin{DoxyCompactList}\small\item\em Replaced by the length of the array when compiled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint32\+\_\+t \hyperlink{cgnuino_8h_aae502611b08dfc1ddb5ac9a8450150eb}{U\+L\+O\+N\+G\+\_\+\+M\+AX}\hypertarget{cgnuino_8h_aae502611b08dfc1ddb5ac9a8450150eb}{}\label{cgnuino_8h_aae502611b08dfc1ddb5ac9a8450150eb}
+
+\begin{DoxyCompactList}\small\item\em Maximal value for unsigned long. \end{DoxyCompactList}\item 
+const byte \hyperlink{cgnuino_8h_a63a8183805bd187b4c3cddf3148ce59c}{B\+Y\+T\+E\+\_\+\+M\+AX}\hypertarget{cgnuino_8h_a63a8183805bd187b4c3cddf3148ce59c}{}\label{cgnuino_8h_a63a8183805bd187b4c3cddf3148ce59c}
+
+\begin{DoxyCompactList}\small\item\em Maximal value for byte. \end{DoxyCompactList}\item 
+constexpr byte \hyperlink{cgnuino_8h_ae44d69d4bfcae5aefd4fc3ac732f598a}{N\+\_\+\+C\+G\+N\+DI} = 10\hypertarget{cgnuino_8h_ae44d69d4bfcae5aefd4fc3ac732f598a}{}\label{cgnuino_8h_ae44d69d4bfcae5aefd4fc3ac732f598a}
+
+\begin{DoxyCompactList}\small\item\em Number of pins that can be simultaneously set for a \hyperlink{classCgnDI}{Cgn\+DI} instance. \end{DoxyCompactList}\item 
+constexpr byte \hyperlink{cgnuino_8h_adb729e7e1080ed2b4e2872f46a970d15}{N\+\_\+\+C\+G\+N\+DO} = 10\hypertarget{cgnuino_8h_adb729e7e1080ed2b4e2872f46a970d15}{}\label{cgnuino_8h_adb729e7e1080ed2b4e2872f46a970d15}
+
+\begin{DoxyCompactList}\small\item\em Number of pins that can be simultaneously set for a \hyperlink{classCgnDO}{Cgn\+DO} instance. \end{DoxyCompactList}\item 
+constexpr byte \hyperlink{cgnuino_8h_af95f44fba5dd40915143e8f9ef8277c6}{N\+\_\+\+C\+G\+N\+V\+A\+L\+T\+I\+EL} = 20\hypertarget{cgnuino_8h_af95f44fba5dd40915143e8f9ef8277c6}{}\label{cgnuino_8h_af95f44fba5dd40915143e8f9ef8277c6}
+
+\begin{DoxyCompactList}\small\item\em Number of buffers \hyperlink{classCgnValtiel}{Cgn\+Valtiel}, speed checker for main loop, can holds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for cgnuino library. 
+
+\begin{DoxyAuthor}{Author}
+Kei Mochizuki 
+\end{DoxyAuthor}

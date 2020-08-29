@@ -1,0 +1,98 @@
+\hypertarget{classCgnSerial}{}\section{Cgn\+Serial Class Reference}
+\label{classCgnSerial}\index{Cgn\+Serial@{Cgn\+Serial}}
+
+
+Communicates with external control apprication running on the PC.  
+
+
+
+
+{\ttfamily \#include $<$cgnuino.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCgnSerial_ab21e7431bdfa6219f78dcb6298798c8d}{Cgn\+Serial} (char=10, char=9)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+String \hyperlink{classCgnSerial_a06cc8201d8ca8484410cb3a3767f0999}{update} (bool=true)
+\begin{DoxyCompactList}\small\item\em Checks the serial buffer for a new input line. \end{DoxyCompactList}\item 
+int \hyperlink{classCgnSerial_a7df12e17883f734dfbba8706773b050e}{get\+Code} ()\hypertarget{classCgnSerial_a7df12e17883f734dfbba8706773b050e}{}\label{classCgnSerial_a7df12e17883f734dfbba8706773b050e}
+
+\begin{DoxyCompactList}\small\item\em Shows decomposed code for the last serial input. \end{DoxyCompactList}\item 
+String \hyperlink{classCgnSerial_a6b482d7fd53a7474a541409629aa861d}{get\+Value} ()\hypertarget{classCgnSerial_a6b482d7fd53a7474a541409629aa861d}{}\label{classCgnSerial_a6b482d7fd53a7474a541409629aa861d}
+
+\begin{DoxyCompactList}\small\item\em Shows decomposed value for the last serial input. \end{DoxyCompactList}\item 
+void \hyperlink{classCgnSerial_ac420456d7efc9ae4141f641e407cec2a}{append} (String)
+\begin{DoxyCompactList}\small\item\em Appends a new value to output buffer. \end{DoxyCompactList}\item 
+void \hyperlink{classCgnSerial_a48af760c371fe83275811b11638abfa0}{out} ()\hypertarget{classCgnSerial_a48af760c371fe83275811b11638abfa0}{}\label{classCgnSerial_a48af760c371fe83275811b11638abfa0}
+
+\begin{DoxyCompactList}\small\item\em Emits buffered text to serial output. \end{DoxyCompactList}\item 
+void \hyperlink{classCgnSerial_a4f651f13f1e98cfb2bc4a08e2b59c3e0}{clear} ()\hypertarget{classCgnSerial_a4f651f13f1e98cfb2bc4a08e2b59c3e0}{}\label{classCgnSerial_a4f651f13f1e98cfb2bc4a08e2b59c3e0}
+
+\begin{DoxyCompactList}\small\item\em Clears existing output buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Communicates with external control apprication running on the PC. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Cgn\+Serial@{Cgn\+Serial}!Cgn\+Serial@{Cgn\+Serial}}
+\index{Cgn\+Serial@{Cgn\+Serial}!Cgn\+Serial@{Cgn\+Serial}}
+\subsubsection[{\texorpdfstring{Cgn\+Serial(char=10, char=9)}{CgnSerial(char=10, char=9)}}]{\setlength{\rightskip}{0pt plus 5cm}Cgn\+Serial\+::\+Cgn\+Serial (
+\begin{DoxyParamCaption}
+\item[{char}]{e = {\ttfamily 10}, }
+\item[{char}]{s = {\ttfamily 9}}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnSerial_ab21e7431bdfa6219f78dcb6298798c8d}{}\label{classCgnSerial_ab21e7431bdfa6219f78dcb6298798c8d}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & E\+OL for serial inputs (by default \textbackslash{}n). \\
+\hline
+{\em s} & Separator for serial outputs (by default \textbackslash{}t). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Cgn\+Serial@{Cgn\+Serial}!append@{append}}
+\index{append@{append}!Cgn\+Serial@{Cgn\+Serial}}
+\subsubsection[{\texorpdfstring{append(\+String)}{append(String)}}]{\setlength{\rightskip}{0pt plus 5cm}void Cgn\+Serial\+::append (
+\begin{DoxyParamCaption}
+\item[{String}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnSerial_ac420456d7efc9ae4141f641e407cec2a}{}\label{classCgnSerial_ac420456d7efc9ae4141f641e407cec2a}
+
+
+Appends a new value to output buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Appended string. \\
+\hline
+\end{DoxyParams}
+\index{Cgn\+Serial@{Cgn\+Serial}!update@{update}}
+\index{update@{update}!Cgn\+Serial@{Cgn\+Serial}}
+\subsubsection[{\texorpdfstring{update(bool=true)}{update(bool=true)}}]{\setlength{\rightskip}{0pt plus 5cm}String Cgn\+Serial\+::update (
+\begin{DoxyParamCaption}
+\item[{bool}]{decompose = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnSerial_a06cc8201d8ca8484410cb3a3767f0999}{}\label{classCgnSerial_a06cc8201d8ca8484410cb3a3767f0999}
+
+
+Checks the serial buffer for a new input line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em decompose} & Whether to decompose the input text (see Details of the class). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{cgnuino_8h}{cgnuino.\+h}\item 
+src/\hyperlink{CgnSerial_8cpp}{Cgn\+Serial.\+cpp}\end{DoxyCompactItemize}
