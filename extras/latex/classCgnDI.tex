@@ -1,0 +1,180 @@
+\hypertarget{classCgnDI}{}\section{Cgn\+DI Class Reference}
+\label{classCgnDI}\index{Cgn\+DI@{Cgn\+DI}}
+
+
+Offers convenient digital-\/in buffering.  
+
+
+
+
+{\ttfamily \#include $<$cgnuino.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCgnDI_a65c74487fcfa1f0073476ac6d1e7fc24}{Cgn\+DI} (byte, byte=1, byte=N\+U\+LL, byte=2)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classCgnDI_a95e8d70a404b9d6b05c562cc293ec39c}{update} ()
+\begin{DoxyCompactList}\small\item\em Updates DI buffer by current pin voltages. \end{DoxyCompactList}\item 
+bool \hyperlink{classCgnDI_a6aa03d3373b19a730ebe60c63102e2de}{on} (byte=0)
+\begin{DoxyCompactList}\small\item\em Checks whether {\itshape i-\/th} DI pin is on (active). \end{DoxyCompactList}\item 
+bool \hyperlink{classCgnDI_a398a749f1f599f8c2076be7b8ea0f1c0}{off} (byte=0)
+\begin{DoxyCompactList}\small\item\em Checks whether {\itshape i-\/th} DI pin is off (inactive). \end{DoxyCompactList}\item 
+bool \hyperlink{classCgnDI_ab177debb1d0d973696230aeabf478b53}{turnon} (byte=0)
+\begin{DoxyCompactList}\small\item\em Checks whether {\itshape i-\/th} DI pin was turned on in current loop. \end{DoxyCompactList}\item 
+bool \hyperlink{classCgnDI_aca8bab4f93ed7c9c4aa184de62b2b50f}{turnoff} (byte=0)
+\begin{DoxyCompactList}\small\item\em Checks whether {\itshape i-\/th} DI pin was turned off in current loop. \end{DoxyCompactList}\item 
+bool \hyperlink{classCgnDI_a21994237460bd0be25a523173e2ba165}{change} (byte=0)
+\begin{DoxyCompactList}\small\item\em Checks whether {\itshape i-\/th} DI pin was changed from previous loop. \end{DoxyCompactList}\item 
+bool \hyperlink{classCgnDI_a38722814960c6459e78e822ee064081d}{keep} (byte=0)
+\begin{DoxyCompactList}\small\item\em Checks whether {\itshape i-\/th} DI pin kept unchanged from previous loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Offers convenient digital-\/in buffering. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Cgn\+DI@{Cgn\+DI}!Cgn\+DI@{Cgn\+DI}}
+\index{Cgn\+DI@{Cgn\+DI}!Cgn\+DI@{Cgn\+DI}}
+\subsubsection[{\texorpdfstring{Cgn\+D\+I(byte, byte=1, byte=\+N\+U\+L\+L, byte=2)}{CgnDI(byte, byte=1, byte=NULL, byte=2)}}]{\setlength{\rightskip}{0pt plus 5cm}Cgn\+D\+I\+::\+Cgn\+DI (
+\begin{DoxyParamCaption}
+\item[{byte}]{p, }
+\item[{byte}]{s = {\ttfamily 1}, }
+\item[{byte}]{o = {\ttfamily NULL}, }
+\item[{byte}]{d = {\ttfamily 2}}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnDI_a65c74487fcfa1f0073476ac6d1e7fc24}{}\label{classCgnDI_a65c74487fcfa1f0073476ac6d1e7fc24}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & First pin number for digital-\/in pins. \\
+\hline
+{\em s} & Number of digital-\/in pins. \\
+\hline
+{\em o} & First pin number for relaied output pins. \\
+\hline
+{\em d} & Delay intervened after a bit change in \mbox{[}ms\mbox{]}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Cgn\+DI@{Cgn\+DI}!change@{change}}
+\index{change@{change}!Cgn\+DI@{Cgn\+DI}}
+\subsubsection[{\texorpdfstring{change(byte=0)}{change(byte=0)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Cgn\+D\+I\+::change (
+\begin{DoxyParamCaption}
+\item[{byte}]{i = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnDI_a21994237460bd0be25a523173e2ba165}{}\label{classCgnDI_a21994237460bd0be25a523173e2ba165}
+
+
+Checks whether {\itshape i-\/th} DI pin was changed from previous loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of DI pin in question. \\
+\hline
+\end{DoxyParams}
+\index{Cgn\+DI@{Cgn\+DI}!keep@{keep}}
+\index{keep@{keep}!Cgn\+DI@{Cgn\+DI}}
+\subsubsection[{\texorpdfstring{keep(byte=0)}{keep(byte=0)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Cgn\+D\+I\+::keep (
+\begin{DoxyParamCaption}
+\item[{byte}]{i = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnDI_a38722814960c6459e78e822ee064081d}{}\label{classCgnDI_a38722814960c6459e78e822ee064081d}
+
+
+Checks whether {\itshape i-\/th} DI pin kept unchanged from previous loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of DI pin in question. \\
+\hline
+\end{DoxyParams}
+\index{Cgn\+DI@{Cgn\+DI}!off@{off}}
+\index{off@{off}!Cgn\+DI@{Cgn\+DI}}
+\subsubsection[{\texorpdfstring{off(byte=0)}{off(byte=0)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Cgn\+D\+I\+::off (
+\begin{DoxyParamCaption}
+\item[{byte}]{i = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnDI_a398a749f1f599f8c2076be7b8ea0f1c0}{}\label{classCgnDI_a398a749f1f599f8c2076be7b8ea0f1c0}
+
+
+Checks whether {\itshape i-\/th} DI pin is off (inactive). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of DI pin in question. \\
+\hline
+\end{DoxyParams}
+\index{Cgn\+DI@{Cgn\+DI}!on@{on}}
+\index{on@{on}!Cgn\+DI@{Cgn\+DI}}
+\subsubsection[{\texorpdfstring{on(byte=0)}{on(byte=0)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Cgn\+D\+I\+::on (
+\begin{DoxyParamCaption}
+\item[{byte}]{i = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnDI_a6aa03d3373b19a730ebe60c63102e2de}{}\label{classCgnDI_a6aa03d3373b19a730ebe60c63102e2de}
+
+
+Checks whether {\itshape i-\/th} DI pin is on (active). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of DI pin in question. \\
+\hline
+\end{DoxyParams}
+\index{Cgn\+DI@{Cgn\+DI}!turnoff@{turnoff}}
+\index{turnoff@{turnoff}!Cgn\+DI@{Cgn\+DI}}
+\subsubsection[{\texorpdfstring{turnoff(byte=0)}{turnoff(byte=0)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Cgn\+D\+I\+::turnoff (
+\begin{DoxyParamCaption}
+\item[{byte}]{i = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnDI_aca8bab4f93ed7c9c4aa184de62b2b50f}{}\label{classCgnDI_aca8bab4f93ed7c9c4aa184de62b2b50f}
+
+
+Checks whether {\itshape i-\/th} DI pin was turned off in current loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of DI pin in question. \\
+\hline
+\end{DoxyParams}
+\index{Cgn\+DI@{Cgn\+DI}!turnon@{turnon}}
+\index{turnon@{turnon}!Cgn\+DI@{Cgn\+DI}}
+\subsubsection[{\texorpdfstring{turnon(byte=0)}{turnon(byte=0)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Cgn\+D\+I\+::turnon (
+\begin{DoxyParamCaption}
+\item[{byte}]{i = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnDI_ab177debb1d0d973696230aeabf478b53}{}\label{classCgnDI_ab177debb1d0d973696230aeabf478b53}
+
+
+Checks whether {\itshape i-\/th} DI pin was turned on in current loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index of DI pin in question. \\
+\hline
+\end{DoxyParams}
+\index{Cgn\+DI@{Cgn\+DI}!update@{update}}
+\index{update@{update}!Cgn\+DI@{Cgn\+DI}}
+\subsubsection[{\texorpdfstring{update()}{update()}}]{\setlength{\rightskip}{0pt plus 5cm}void Cgn\+D\+I\+::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnDI_a95e8d70a404b9d6b05c562cc293ec39c}{}\label{classCgnDI_a95e8d70a404b9d6b05c562cc293ec39c}
+
+
+Updates DI buffer by current pin voltages. 
+
+\begin{DoxyNote}{Note}
+For a normal usage, this method is intended to be called once, and only once, inside {\ttfamily loop} function. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{cgnuino_8h}{cgnuino.\+h}\item 
+src/\hyperlink{CgnDI_8cpp}{Cgn\+D\+I.\+cpp}\end{DoxyCompactItemize}
