@@ -1,0 +1,77 @@
+\hypertarget{classCgnPeriod}{}\section{Cgn\+Period Class Reference}
+\label{classCgnPeriod}\index{Cgn\+Period@{Cgn\+Period}}
+
+
+Remembers current task period and its time constraint.  
+
+
+
+
+{\ttfamily \#include $<$cgnuino.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCgnPeriod_a403c5c1c8e3b3212ec29986b448c35c2}{Cgn\+Period} ()\hypertarget{classCgnPeriod_a403c5c1c8e3b3212ec29986b448c35c2}{}\label{classCgnPeriod_a403c5c1c8e3b3212ec29986b448c35c2}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classCgnPeriod_ae5d5882925c472e5a6e9f025a6b417f8}{set} (String, uint32\+\_\+t=0)
+\begin{DoxyCompactList}\small\item\em Sets current task period and its time limitation. \end{DoxyCompactList}\item 
+bool \hyperlink{classCgnPeriod_a314dc02f428d3a59c7f3dbae3d88a9d7}{is} (String)
+\begin{DoxyCompactList}\small\item\em Checks whether the current task period is {\itshape s}. \end{DoxyCompactList}\item 
+bool \hyperlink{classCgnPeriod_a0e98f94890d61e49bdcf6800389e81a2}{expire} ()\hypertarget{classCgnPeriod_a0e98f94890d61e49bdcf6800389e81a2}{}\label{classCgnPeriod_a0e98f94890d61e49bdcf6800389e81a2}
+
+\begin{DoxyCompactList}\small\item\em Checks whether the current task period expired its time limitation. \end{DoxyCompactList}\item 
+String \hyperlink{classCgnPeriod_a5bf2e4007d1049ad19d25214420d2013}{get} ()\hypertarget{classCgnPeriod_a5bf2e4007d1049ad19d25214420d2013}{}\label{classCgnPeriod_a5bf2e4007d1049ad19d25214420d2013}
+
+\begin{DoxyCompactList}\small\item\em Shows current task period. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{classCgnPeriod_a3aa632ae76af8ae55d0733a75471c107}{until} ()\hypertarget{classCgnPeriod_a3aa632ae76af8ae55d0733a75471c107}{}\label{classCgnPeriod_a3aa632ae76af8ae55d0733a75471c107}
+
+\begin{DoxyCompactList}\small\item\em Shows the time limitation of the current task period. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Remembers current task period and its time constraint. 
+
+\subsection{Member Function Documentation}
+\index{Cgn\+Period@{Cgn\+Period}!is@{is}}
+\index{is@{is}!Cgn\+Period@{Cgn\+Period}}
+\subsubsection[{\texorpdfstring{is(\+String)}{is(String)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Cgn\+Period\+::is (
+\begin{DoxyParamCaption}
+\item[{String}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnPeriod_a314dc02f428d3a59c7f3dbae3d88a9d7}{}\label{classCgnPeriod_a314dc02f428d3a59c7f3dbae3d88a9d7}
+
+
+Checks whether the current task period is {\itshape s}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Name of the candidate task period. \\
+\hline
+\end{DoxyParams}
+\index{Cgn\+Period@{Cgn\+Period}!set@{set}}
+\index{set@{set}!Cgn\+Period@{Cgn\+Period}}
+\subsubsection[{\texorpdfstring{set(\+String, uint32\+\_\+t=0)}{set(String, uint32_t=0)}}]{\setlength{\rightskip}{0pt plus 5cm}void Cgn\+Period\+::set (
+\begin{DoxyParamCaption}
+\item[{String}]{s, }
+\item[{uint32\+\_\+t}]{l = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hypertarget{classCgnPeriod_ae5d5882925c472e5a6e9f025a6b417f8}{}\label{classCgnPeriod_ae5d5882925c472e5a6e9f025a6b417f8}
+
+
+Sets current task period and its time limitation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Name of the current task period. \\
+\hline
+{\em l} & Maximum length of current task period in \mbox{[}ms\mbox{]}. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{cgnuino_8h}{cgnuino.\+h}\item 
+src/\hyperlink{CgnPeriod_8cpp}{Cgn\+Period.\+cpp}\end{DoxyCompactItemize}
