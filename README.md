@@ -23,5 +23,5 @@ if not, see http://www.gnu.org/licenses/.
 # Manual
 Detailed explanation of the usage of the library is
 available as html manual in extras/man directory.
-Open extras/man/index.html for the mainpage of the manual.
+Open extras/man/index.html to see the mainpage of the manual.
 
