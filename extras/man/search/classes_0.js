@@ -8,5 +8,6 @@ var searchData=
   ['cgnserial',['CgnSerial',['../classCgnSerial.html',1,'']]],
   ['cgnstopwatch',['CgnStopwatch',['../classCgnStopwatch.html',1,'']]],
   ['cgnstrobe',['CgnStrobe',['../classCgnStrobe.html',1,'']]],
+  ['cgntone',['CgnTone',['../classCgnTone.html',1,'']]],
   ['cgnvaltiel',['CgnValtiel',['../classCgnValtiel.html',1,'']]]
 ];

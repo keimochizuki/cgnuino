@@ -13,6 +13,7 @@ CgnPeriod	KEYWORD1
 CgnSerial	KEYWORD1
 CgnStopwatch	KEYWORD1
 CgnStrobe	KEYWORD1
+CgnTone	KEYWORD1
 CgnValtiel	KEYWORD1
 
 #######################################

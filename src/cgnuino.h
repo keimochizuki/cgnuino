@@ -23,6 +23,103 @@ constexpr byte N_CGNVALTIEL = 20; //!< Number of buffers CgnValtiel, speed check
 
 /*!
  * @brief Offers convenient digital-in buffering.
+ *
+ * Digital-in pins make Arduino boards detect signal changes
+ * in outer world as high (5V [or 3.3V]) and low (0V) voltage.
+ * The standard way to record these signals by Arduino is
+ * to use \c digitalRead function, which returns
+ * \c HIGH or \c LOW (special constants in Arduino) depending on
+ * the incoming signal.
+ *
+ * In constructing behavioral tasks, this function can be used
+ * to monitor any arbitrary electrical parts or instruments
+ * that put out information about their state as a
+ * 5V/0V digital (binary) signal.
+ * One of the most common cases is to record participant's
+ * action as button press, lever manipulation and so on.
+ * For example, if you connect a mechanical switch with
+ * either pull-up or pull-down resistor, you can monitor
+ * the button's push/release state as \c HIGH or \c LOW
+ * (depending on whether you pulled up or down the pin).
+ * Especially in digital inputs on Arduino boards,
+ * there is a convenient pin mode called \c INPUT_PULLUP.
+ * This feature sets the designated pin as input mode,
+ * and internally connects it to high votage
+ * with inbuilt registor about 10k ohm (i.e., pulls up the designated pin).
+ * Thus, by inserting a simple single-pole switch to this pin and GND,
+ * you can record the state of the switch as \c HIGH (released) or
+ * \c LOW (pressed) without any external pull-up mechanism.
+ *
+ * \code
+ * byte pin = 13;
+ * bool isReleased;
+ * pinMode(pin, INPUT_PULLUP);
+ * isReleased = digitalRead(pin);
+ * \endcode
+ *
+ * However, in behavioral tasks, there are often times that
+ * you want to know whether the button is pressed and released
+ * at this moment (in this loop).
+ * In other words, you may want to detect,
+ * not only the button's current state,
+ * but also the timing of changes of the button press/release.
+ * In this case, you need to buffer the previous value from the pin,
+ * and compare it with the current pin state read by \c digitalRead function.
+ * Furthermore, there can be multiple of such input like
+ * home, center, left and right buttons, etc...
+ * These conditions force you to deal with an array of input buffers
+ * and repeated comparison processes every time you want to
+ * refer to the current, latest values of these inputs.
+ *
+ * CgnDI class offers an easy way for such input monitoring
+ * in behavioral tasks.
+ * At construction, CgnDI class prepares multiple pins as
+ * pulled-up digital inputs using \c INPUT_PULLUP.
+ * Maximal number of pins for one instance of this class
+ * is determined by a constant \c N_CGNDI.
+ * Every time \c update is called, CgnDI class read the
+ * current values of the input pins.
+ * These values can be checked by \c on and \c off methods,
+ * which returns \c true when the button is pressed
+ * (i.e., the pin is connected to GND by the switch),
+ * and \c false when it is not pressed
+ * (i.e., the pin is connected to 5V through pull-up registor).
+ * In other words, original negative logic values
+ * (\c LOW/HIGH for switch's on/off, respectively)
+ * read by \c digitalRead function are
+ * converted to \c true/false boolean with a translation
+ * to a positive logic.
+ * Also CgnDI class remembers the previous values of the pins in a buffer.
+ * Thus you can check if the value was changed at the time of
+ * last \c update call by just performing \c turnon and \c turnoff methods.
+ * Because of this operation mechanism, \c update method
+ * is intended to be performed once (and normally only once)
+ * in every loop which is repeated in reasonablly quick cycles
+ * (usually a few milliseconds will be enough,
+ * but it depends on situation of each experiment).
+ *
+ * CgnDI class relays the current values of digital inputs
+ * to other set of digital-out pins,
+ * when dedicated pin numbers for this facility is designated.
+ * This can be used to relay the buttons' on/off state
+ * to other measurement instruments.
+ * CgnDI class also has a so called debounce mechanism.
+ * This is a (in the case of cgnuino library) software mechanism
+ * that conquer the short, unstable input fluctuation
+ * at the very moment of switch opening and closing.
+ * High flequent alteration of high/low voltage,
+ * called chattering or ripple, is problematic
+ * since Arduino may misregard it as multiple numbers of
+ * (really really) quick turing on and off of the switch.
+ * To prevent it, CgnDI class omits input to a digital-in pin
+ * right after once a change occured (by default a few milliseconds),
+ * discarding possible chattering input during this period.
+ * Although absolute amount of time this silencing takes place
+ * is universal to all the pins for a given CgnDI instance,
+ * actual omission is performed separately for each pin.
+ * In other words, if a change has occured to a given pin,
+ * succeeding input to that same pin is omitted for a short period,
+ * but inputs to other pins are regularly received and accessible.
 **/
 class CgnDI {
   public:
@@ -49,17 +146,19 @@ class CgnDI {
 
 /*!
  * @brief Emits asynchroneous digital-out.
+ *
+ * Digital-out pins make Arduino boards emit digital signal as
+ * high (5V [or 3.3V]) or low (0V) voltage.
 **/
 class CgnDO {
   public:
-    CgnDO(byte, byte = 1, char = 'd');
+    CgnDO(byte, byte = 1);
     void update();
-    void out(byte, uint32_t, uint16_t = 440);
+    void out(byte, uint32_t);
 
   private:
     byte first;
     byte n;
-    char type;
     uint32_t limit[N_CGNDO];
 };
 
@@ -165,6 +264,20 @@ class CgnStrobe {
     byte first;
 	uint32_t len;
     bool us;
+};
+
+/*!
+ * @brief Emits asynchroneous tone output.
+**/
+class CgnTone {
+  public:
+    CgnTone(byte);
+    void update();
+    void out(uint32_t, uint16_t = 440);
+
+  private:
+    byte pin;
+    uint32_t limit;
 };
 
 /*!

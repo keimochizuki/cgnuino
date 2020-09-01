@@ -2,7 +2,7 @@ var searchData=
 [
   ['cgndi',['CgnDI',['../classCgnDI.html',1,'CgnDI'],['../classCgnDI.html#a65c74487fcfa1f0073476ac6d1e7fc24',1,'CgnDI::CgnDI()']]],
   ['cgndi_2ecpp',['CgnDI.cpp',['../CgnDI_8cpp.html',1,'']]],
-  ['cgndo',['CgnDO',['../classCgnDO.html',1,'CgnDO'],['../classCgnDO.html#ae76f2ab7e8cf24a92a668daf1de50b77',1,'CgnDO::CgnDO()']]],
+  ['cgndo',['CgnDO',['../classCgnDO.html',1,'CgnDO'],['../classCgnDO.html#a23155dea94b636394f0ae14c2bde5b32',1,'CgnDO::CgnDO()']]],
   ['cgndo_2ecpp',['CgnDO.cpp',['../CgnDO_8cpp.html',1,'']]],
   ['cgnlogger',['CgnLogger',['../classCgnLogger.html',1,'CgnLogger'],['../classCgnLogger.html#aff7b14b38ccc86b1a4e1e2660013a629',1,'CgnLogger::CgnLogger()']]],
   ['cgnlogger_2ecpp',['CgnLogger.cpp',['../CgnLogger_8cpp.html',1,'']]],
@@ -16,6 +16,8 @@ var searchData=
   ['cgnstopwatch_2ecpp',['CgnStopwatch.cpp',['../CgnStopwatch_8cpp.html',1,'']]],
   ['cgnstrobe',['CgnStrobe',['../classCgnStrobe.html',1,'CgnStrobe'],['../classCgnStrobe.html#a2b529bfaaa9bec4011e46cf9899e99eb',1,'CgnStrobe::CgnStrobe()']]],
   ['cgnstrobe_2ecpp',['CgnStrobe.cpp',['../CgnStrobe_8cpp.html',1,'']]],
+  ['cgntone',['CgnTone',['../classCgnTone.html',1,'CgnTone'],['../classCgnTone.html#af07c4b98fd2f50b9c5bddfb04bfa658a',1,'CgnTone::CgnTone()']]],
+  ['cgntone_2ecpp',['CgnTone.cpp',['../CgnTone_8cpp.html',1,'']]],
   ['cgnuino_2eh',['cgnuino.h',['../cgnuino_8h.html',1,'']]],
   ['cgnvaltiel',['CgnValtiel',['../classCgnValtiel.html',1,'CgnValtiel'],['../classCgnValtiel.html#a3aa25cdded9cf91e0c35aa5b7637ffd7',1,'CgnValtiel::CgnValtiel()']]],
   ['cgnvaltiel_2ecpp',['CgnValtiel.cpp',['../CgnValtiel_8cpp.html',1,'']]],
