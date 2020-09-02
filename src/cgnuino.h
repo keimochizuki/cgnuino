@@ -15,11 +15,10 @@
 **/
 #define countof(array) (sizeof(array) / sizeof(array[0]))
 
-extern const uint32_t ULONG_MAX; //!< Maximal value for unsigned long.
-extern const byte BYTE_MAX; //!< Maximal value for byte.
+constexpr uint32_t ULONG_MAX = 4294967295; //!< Maximal value for unsigned long.
+constexpr byte BYTE_MAX = 255; //!< Maximal value for byte.
 constexpr byte N_CGNDI = 10; //!< Number of pins that can be simultaneously set for a CgnDI instance.
 constexpr byte N_CGNDO = 10; //!< Number of pins that can be simultaneously set for a CgnDO instance.
-constexpr byte N_CGNVALTIEL = 20; //!< Number of buffers CgnValtiel, speed checker for main loop, can holds.
 
 /*!
  * @brief Offers convenient digital-in buffering.
@@ -286,12 +285,17 @@ class CgnTone {
 class CgnValtiel {
   public:
     CgnValtiel();
-    float update();
+    void start();
+    float lap();
+    uint32_t getMax();
+    uint32_t getMin();
 
   private:
 	uint32_t from;
+	uint32_t last;
 	uint32_t n;
-    byte l[N_CGNVALTIEL];
+	uint32_t mx;
+	uint32_t mn;
 };
 
 #endif

@@ -11,27 +11,51 @@
  * @brief Constructor.
 **/
 CgnValtiel::CgnValtiel() {
-  n = 0;
   from = millis();
+  last = from;
+  n = 0;
+  mx = 0;
+  mn = ULONG_MAX;
 }
 
 /*!
- * @brief Stores the length of the last loop and show averaged loop length.
+ * @brief Start monitoring loop length by resetting the counter.
+**/
+void CgnValtiel::start() {
+  from = millis();
+  last = from;
+  n = 0;
+  mx = 0;
+  mn = ULONG_MAX;
+}
+
+/*!
+ * @brief Show average length of past loops and count up the counter.
  * @note For a normal usage, this method is intended to be called
  *       once, and only once, inside \c loop function.
 **/
-float CgnValtiel::update() {
-  float tmp = 0;
-  byte m;
+float CgnValtiel::lap() {
+  uint32_t cur;
+  cur = millis();
 
-  l[n % N_CGNVALTIEL] = millis() - from;
   n += 1;
-  from = millis();
+  mx = max(mx, cur - last);
+  mn = min(mn, cur - last);
+  last = cur;
+  return (float)(cur - from) / (float)n;
+}
 
-  m = min(n, N_CGNVALTIEL);
-  for (int i = 0; i < m; i++) {
-    tmp += l[i];
-  }
-  return tmp / (float)m;
+/*!
+ * @brief Show maximal length of past loop in [ms].
+**/
+uint32_t CgnValtiel::getMax() {
+  return mx;
+}
+
+/*!
+ * @brief Show minimal length of past loop in [ms].
+**/
+uint32_t CgnValtiel::getMin() {
+  return mn;
 }
 
