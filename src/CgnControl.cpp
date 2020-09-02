@@ -1,6 +1,6 @@
 /*!
- * @file CgnSerial.cpp
- * @brief Definition of CgnSerial class.
+ * @file CgnControl.cpp
+ * @brief Definition of CgnControl class.
  * @author Kei Mochizuki
 **/
 
@@ -10,21 +10,18 @@
 /*!
  * @brief Constructor.
  * @param e EOL for serial inputs (by default @\n).
- * @param s Separator for serial outputs (by default @\t).
 **/
-CgnSerial::CgnSerial(char e, char s) {
+CgnControl::CgnControl(char e) {
   c = 0;
   v = "";
   eol = e;
-  sep = s;
-  data = "";
 }
 
 /*!
  * @brief Checks the serial buffer for a new input line.
  * @param decompose Whether to decompose the input text (see Details of the class).
 **/
-String CgnSerial::update(bool decompose) {
+String CgnControl::update(bool decompose) {
   int i;
   String s;
 
@@ -62,40 +59,14 @@ String CgnSerial::update(bool decompose) {
 /*!
  * @brief Shows decomposed code for the last serial input.
 **/
-int CgnSerial::getCode() {
+int CgnControl::getCode() {
   return c;
 }
 
 /*!
  * @brief Shows decomposed value for the last serial input.
 **/
-String CgnSerial::getValue() {
+String CgnControl::getValue() {
   return v;
-}
-
-/*!
- * @brief Appends a new value to output buffer.
- * @param s Appended string.
-**/
-void CgnSerial::append(String s) {
-  if (data != "") {
-    data += sep;
-  }
-  data += s;
-}
-
-/*!
- * @brief Emits buffered text to serial output.
-**/
-void CgnSerial::out() {
-  Serial.println(data);
-  data = "";
-}
-
-/*!
- * @brief Clears existing output buffer.
-**/
-void CgnSerial::clear() {
-  data = "";
 }
 

@@ -21,6 +21,22 @@ constexpr byte N_CGNDI = 10; //!< Number of pins that can be simultaneously set 
 constexpr byte N_CGNDO = 10; //!< Number of pins that can be simultaneously set for a CgnDO instance.
 
 /*!
+ * @brief Communicates with external control apprication running on the PC.
+**/
+class CgnControl {
+  public:
+    CgnControl(char = 10);
+    String update(bool = true);
+    int getCode();
+    String getValue();
+
+  private:
+    int c;
+    String v;
+    char eol;
+};
+
+/*!
  * @brief Offers convenient digital-in buffering.
  *
  * Digital-in pins make Arduino boards detect signal changes
@@ -162,6 +178,21 @@ class CgnDO {
 };
 
 /*!
+ * @brief Stores trial information and print it to the Serial.
+**/
+class CgnData {
+  public:
+    CgnData(char = 9);
+    void append(String);
+    void out();
+    void clear();
+
+  private:
+    char sep;
+    String data;
+};
+
+/*!
  * @brief Logs arbitorary bit change similar to CgnDI class.
 **/
 class CgnLogger {
@@ -214,27 +245,6 @@ class CgnPeriod {
   private:
     String period;
     uint32_t limit;
-};
-
-/*!
- * @brief Communicates with external control apprication running on the PC.
-**/
-class CgnSerial {
-  public:
-    CgnSerial(char = 10, char = 9);
-    String update(bool = true);
-    int getCode();
-    String getValue();
-    void append(String);
-    void out();
-    void clear();
-
-  private:
-    int c;
-    String v;
-    char eol;
-    char sep;
-    String data;
 };
 
 /*!

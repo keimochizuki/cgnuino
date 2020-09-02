@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['append',['append',['../classCgnSerial.html#ac420456d7efc9ae4141f641e407cec2a',1,'CgnSerial']]]
+  ['append',['append',['../classCgnData.html#ab04819b6094906b048baf034f3dd199b',1,'CgnData']]]
 ];
