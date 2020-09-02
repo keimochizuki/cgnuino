@@ -5,12 +5,13 @@
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
+CgnControl	KEYWORD1
 CgnDI	KEYWORD1
 CgnDO	KEYWORD1
+CgnData	KEYWORD1
 CgnLogger	KEYWORD1
 CgnPause	KEYWORD1
 CgnPeriod	KEYWORD1
-CgnSerial	KEYWORD1
 CgnStopwatch	KEYWORD1
 CgnStrobe	KEYWORD1
 CgnTone	KEYWORD1
