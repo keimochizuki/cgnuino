@@ -19,9 +19,8 @@ CgnControl::CgnControl(char e) {
 
 /*!
  * @brief Checks the serial buffer for a new input line.
- * @param decompose Whether to decompose the input text (see Details of the class).
 **/
-String CgnControl::update(bool decompose) {
+String CgnControl::update() {
   int i;
   String s;
 
@@ -31,10 +30,7 @@ String CgnControl::update(bool decompose) {
     s = Serial.readStringUntil(eol);
     s.trim();
     if (s.length() > 0) {
-      if (!decompose) {
-        // for raw string input
-        v = s;
-      } else if (s.length() == 1) {
+      if (s.length() == 1) {
         // for one-character command
         c = int(s[0]);
       } else {

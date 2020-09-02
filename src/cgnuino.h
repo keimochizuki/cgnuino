@@ -26,7 +26,7 @@ constexpr byte N_CGNDO = 10; //!< Number of pins that can be simultaneously set 
 class CgnControl {
   public:
     CgnControl(char = 10);
-    String update(bool = true);
+    String update();
     int getCode();
     String getValue();
 
