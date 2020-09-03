@@ -39,7 +39,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -79,10 +78,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Valtiel.ino</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="cgnuino_8h.html">cgnuino.h</a>&quot;</span></div><div class="line"></div><div class="line"><a name="_a0"></a><a class="code" href="classCgnValtiel.html">CgnValtiel</a> val;</div><div class="line">byte n = 0;</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> setup() {</div><div class="line">  val.<a name="a1"></a><a class="code" href="classCgnValtiel.html#aadc77177318fed1e2a5470f2f500d5a4">start</a>();</div><div class="line">  randomSeed(analogRead(A0));</div><div class="line">  Serial.begin(115200);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> loop() {</div><div class="line">  n += 1;</div><div class="line">  <span class="keywordflow">if</span> (n &gt;= 100) {</div><div class="line">    Serial.println(val.<a name="a2"></a><a class="code" href="classCgnValtiel.html#a5ba87488d22cd7862606a0f9085b0fb1">lap</a>());</div><div class="line">    val.<a class="code" href="classCgnValtiel.html#aadc77177318fed1e2a5470f2f500d5a4">start</a>();</div><div class="line">    n = 0;</div><div class="line">  } <span class="keywordflow">else</span> {</div><div class="line">    val.<a class="code" href="classCgnValtiel.html#a5ba87488d22cd7862606a0f9085b0fb1">lap</a>();</div><div class="line">  }</div><div class="line">  delay(random(1, 20));</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> </div><!-- contents -->
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;cgnuino.h&quot;</span></div><div class="line"></div><div class="line"><a name="_a0"></a><a class="code" href="classCgnValtiel.html">CgnValtiel</a> val;</div><div class="line">byte n = 0;</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> setup() {</div><div class="line">  val.<a name="a1"></a><a class="code" href="classCgnValtiel.html#aadc77177318fed1e2a5470f2f500d5a4">start</a>();</div><div class="line">  randomSeed(analogRead(A0));</div><div class="line">  Serial.begin(115200);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> loop() {</div><div class="line">  n += 1;</div><div class="line">  <span class="keywordflow">if</span> (n &gt;= 100) {</div><div class="line">    Serial.println(val.<a name="a2"></a><a class="code" href="classCgnValtiel.html#a5ba87488d22cd7862606a0f9085b0fb1">lap</a>());</div><div class="line">    val.<a class="code" href="classCgnValtiel.html#aadc77177318fed1e2a5470f2f500d5a4">start</a>();</div><div class="line">    n = 0;</div><div class="line">  } <span class="keywordflow">else</span> {</div><div class="line">    val.<a class="code" href="classCgnValtiel.html#a5ba87488d22cd7862606a0f9085b0fb1">lap</a>();</div><div class="line">  }</div><div class="line">  delay(random(1, 20));</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 3 2020 17:23:25 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Sep 3 2020 17:26:17 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
