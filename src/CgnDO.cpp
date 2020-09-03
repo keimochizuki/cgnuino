@@ -2,6 +2,8 @@
  * @file CgnDO.cpp
  * @brief Definition of CgnDO class.
  * @author Kei Mochizuki
+ * @example Lchika.ino
+ * @example LchikaWave.ino
 **/
 
 #include "Arduino.h"

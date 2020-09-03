@@ -2,6 +2,10 @@
  * @file CgnStopwatch.cpp
  * @brief Definition of CgnStopwatch class.
  * @author Kei Mochizuki
+ * @example Lchika.ino
+ * @example LchikaWave.ino
+ * @example Period.ino
+ * @example SeqResp.ino
 **/
 
 #include "Arduino.h"

@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -117,7 +118,8 @@ String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <div class="fragment"><div class="line"><a class="code" href="classCgnControl.html">CgnControl</a> ctrl;</div><div class="line"><span class="keywordtype">int</span> x;</div><div class="line"><span class="keywordtype">float</span> y;</div><div class="line">String z;</div><div class="line"></div><div class="line">ctrl.<a class="code" href="classCgnControl.html#a4b2bbe20e02aac418f974a8588193fcd">update</a>();</div><div class="line"><span class="keywordflow">switch</span> (ctrl.<a class="code" href="classCgnControl.html#a47f79ffa0386c96280c600eed2cf89a5">getCode</a>()) {</div><div class="line">  <span class="keywordflow">case</span> 1:</div><div class="line">    x = ctrl.<a class="code" href="classCgnControl.html#a1a5a50894732d9b27984fb459c9092de">getValue</a>().toInt();</div><div class="line">    <span class="keywordflow">break</span>;</div><div class="line">  <span class="keywordflow">case</span> 2:</div><div class="line">    y = ctrl.<a class="code" href="classCgnControl.html#a1a5a50894732d9b27984fb459c9092de">getValue</a>().toFloat();</div><div class="line">    <span class="keywordflow">break</span>;</div><div class="line">  <span class="keywordflow">case</span> 5:</div><div class="line">    z = ctrl.<a class="code" href="classCgnControl.html#a1a5a50894732d9b27984fb459c9092de">getValue</a>();</div><div class="line">    <span class="keywordflow">break</span>;</div><div class="line">}</div></div><!-- fragment --><p>In the example above, you can dynamically change the value of <code>x</code> to <code>2000</code> by sending 1:2000 through a serial. Similarly, sending 2:3.14 will set <code>y</code> as <code>3.14</code>, and 5:trainingMode set <code>z</code> as <code>"trainingMode"</code>. As this example shows, how the received value is used in conditional branches is completely up to you. In other words, the received value is simply left in String type, so you need to put appropriate type casting and explicitly determine which variable should store that value in each <code>case</code> branches.</p>
 <p>If received text is composed only one character, <a class="el" href="classCgnControl.html" title="Communicates with external control apprication running on a secondary PC. ">CgnControl</a> regards it as an ascii-coded integer. This allows you an easy conditional control on task's behavior by one-character serial emittion. For example, on receiving a text "A", <a class="el" href="classCgnControl.html" title="Communicates with external control apprication running on a secondary PC. ">CgnControl</a> regards it as a "code" of <code>65</code> (ascii code of upper "A"). Samely sending "a" is received as a "code" of <code>97</code>. Therefore, just typing "A" and "a", you can turn on and off the 13th GPIO pin in the example code below.</p>
 <div class="fragment"><div class="line">ctrl.<a class="code" href="classCgnControl.html#a4b2bbe20e02aac418f974a8588193fcd">update</a>();</div><div class="line"><span class="keywordflow">switch</span> (ctrl.<a class="code" href="classCgnControl.html#a47f79ffa0386c96280c600eed2cf89a5">getCode</a>()) {</div><div class="line">  <span class="keywordflow">case</span> 65:</div><div class="line">    digitalWrite(13, HIGH);</div><div class="line">    <span class="keywordflow">break</span>;</div><div class="line">  <span class="keywordflow">case</span> 97:</div><div class="line">    digitalWrite(13, LOW);</div><div class="line">    <span class="keywordflow">break</span>;</div><div class="line">}</div></div><!-- fragment --><p>As this example clearly shows, you don't need to restrict the usage of <a class="el" href="classCgnControl.html" title="Communicates with external control apprication running on a secondary PC. ">CgnControl</a> for variable modification. In fact, it offers an flexible mechanism with which you can perform arbitrary on-line conditional branching through serial interaction. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Control_8ino-example.html#_a0">Control.ino</a>.</dd>
+</dl></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a393d29b1982a966244e989830a7b8a52"></a>
 <div class="memitem">
 <div class="memproto">
@@ -147,7 +149,7 @@ String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Sep 3 2020 17:23:25 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

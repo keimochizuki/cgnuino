@@ -2,6 +2,7 @@
  * @file CgnPeriod.cpp
  * @brief Definition of CgnPeriod class.
  * @author Kei Mochizuki
+ * @example Period.ino
 **/
 
 #include "Arduino.h"

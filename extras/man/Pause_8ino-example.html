@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>cgnuino: Member List</title>
+<title>cgnuino: Pause.ino</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,7 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
@@ -59,12 +59,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
-    </ul>
-  </div>
+</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -79,24 +74,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">CgnLogger Member List</div>  </div>
+<div class="title">Pause.ino</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="classCgnLogger.html">CgnLogger</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classCgnLogger.html#aff7b14b38ccc86b1a4e1e2660013a629">CgnLogger</a>(bool=false, byte=NULL, byte=0)</td><td class="entry"><a class="el" href="classCgnLogger.html">CgnLogger</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classCgnLogger.html#a16e3dfb62d1dc8b1cdebfccb37111681">change</a>()</td><td class="entry"><a class="el" href="classCgnLogger.html">CgnLogger</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classCgnLogger.html#afdca8036a131c8e0622efeefec4549d7">keep</a>()</td><td class="entry"><a class="el" href="classCgnLogger.html">CgnLogger</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classCgnLogger.html#a7b20a0a1a38f1e2c5fab1f50d7dacceb">off</a>()</td><td class="entry"><a class="el" href="classCgnLogger.html">CgnLogger</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classCgnLogger.html#a0fdb59cf481dae0872eb978549126eca">on</a>()</td><td class="entry"><a class="el" href="classCgnLogger.html">CgnLogger</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classCgnLogger.html#ab05a8d3bc157ed6e1a5397a7fe8a443f">turnoff</a>()</td><td class="entry"><a class="el" href="classCgnLogger.html">CgnLogger</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classCgnLogger.html#aefba7d9184677add6d60dbfafed12e06">turnon</a>()</td><td class="entry"><a class="el" href="classCgnLogger.html">CgnLogger</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classCgnLogger.html#a10b9f485cf92d3c0922cdcbfabaebe73">update</a>(bool)</td><td class="entry"><a class="el" href="classCgnLogger.html">CgnLogger</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="cgnuino_8h.html">cgnuino.h</a>&quot;</span></div><div class="line"></div><div class="line"><a name="_a0"></a><a class="code" href="classCgnPause.html">CgnPause</a> pause = <a class="code" href="classCgnPause.html">CgnPause</a>(13);</div><div class="line">byte n = 0, inc = 1;</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> setup() {</div><div class="line">  Serial.begin(115200);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> loop() {</div><div class="line">  byte tmp = n;</div><div class="line"></div><div class="line">  pause.<a name="a1"></a><a class="code" href="classCgnPause.html#ae0de74d717fce76ecfeb440ce5ac2f1c">check</a>();</div><div class="line">  <span class="keywordflow">while</span> (tmp &gt; 0) {</div><div class="line">    Serial.print(<span class="stringliteral">&quot; &quot;</span>);</div><div class="line">    tmp -= 1;</div><div class="line">  }</div><div class="line">  Serial.println(<span class="stringliteral">&quot;*&quot;</span>);</div><div class="line"></div><div class="line">  n += inc;</div><div class="line">  <span class="keywordflow">if</span> (n == 10) {</div><div class="line">    inc = -1;</div><div class="line">  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (n == 0) {</div><div class="line">    inc = 1;</div><div class="line">  }</div><div class="line"></div><div class="line">  delay(250);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated on Thu Sep 3 2020 17:23:25 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">

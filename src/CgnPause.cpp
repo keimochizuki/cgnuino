@@ -2,6 +2,7 @@
  * @file CgnPause.cpp
  * @brief Definition of CgnPause class.
  * @author Kei Mochizuki
+ * @example Pause.ino
 **/
 
 #include "Arduino.h"

@@ -2,6 +2,7 @@
  * @file CgnLogger.cpp
  * @brief Definition of CgnLogger class.
  * @author Kei Mochizuki
+ * @example Logger.ino
 **/
 
 #include "Arduino.h"
