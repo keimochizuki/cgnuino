@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Communicates with external control apprication running on the PC.  
+<p>Communicates with external control apprication running on a secondary PC.  
  <a href="classCgnControl.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="cgnuino_8h_source.html">cgnuino.h</a>&gt;</code></p>
@@ -98,9 +98,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a393d29b1982a966244e989830a7b8a52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnControl.html#a393d29b1982a966244e989830a7b8a52">CgnControl</a> (char=10)</td></tr>
 <tr class="memdesc:a393d29b1982a966244e989830a7b8a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a393d29b1982a966244e989830a7b8a52">More...</a><br /></td></tr>
 <tr class="separator:a393d29b1982a966244e989830a7b8a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6b75faef7e2c52a40446aad5f41bc26"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnControl.html#af6b75faef7e2c52a40446aad5f41bc26">update</a> (bool=true)</td></tr>
-<tr class="memdesc:af6b75faef7e2c52a40446aad5f41bc26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the serial buffer for a new input line.  <a href="#af6b75faef7e2c52a40446aad5f41bc26">More...</a><br /></td></tr>
-<tr class="separator:af6b75faef7e2c52a40446aad5f41bc26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b2bbe20e02aac418f974a8588193fcd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b2bbe20e02aac418f974a8588193fcd"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnControl.html#a4b2bbe20e02aac418f974a8588193fcd">update</a> ()</td></tr>
+<tr class="memdesc:a4b2bbe20e02aac418f974a8588193fcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the serial buffer for a new input line. <br /></td></tr>
+<tr class="separator:a4b2bbe20e02aac418f974a8588193fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47f79ffa0386c96280c600eed2cf89a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47f79ffa0386c96280c600eed2cf89a5"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnControl.html#a47f79ffa0386c96280c600eed2cf89a5">getCode</a> ()</td></tr>
 <tr class="memdesc:a47f79ffa0386c96280c600eed2cf89a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows decomposed code for the last serial input. <br /></td></tr>
@@ -111,7 +112,11 @@ String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="separator:a1a5a50894732d9b27984fb459c9092de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Communicates with external control apprication running on the PC. </p>
+<div class="textblock"><p>In normal psychological experiments in humans, no "manpowered" monitoring of task progression is usually required. Once the task is run for a given participant, values of the variables in the task will change by themselves, i.e., as you programmed in the code. However, especially in animal experiments, there are situations you come to wish for on-line modification of variable without stopping the task. For example, you may want to change the time length of certain task period or parameter, depending on the animal's temporary motivational state. You may also want to prepare more or less different task modes in a single Arduino Sketch, and manually switch them pro re nata.</p>
+<p>Although this is somewhat a difficult request for "compiled language" like Arduino, you can achieve it by sending command through a serial connection and receiving it via <a class="el" href="classCgnControl.html" title="Communicates with external control apprication running on a secondary PC. ">CgnControl</a> class. <a class="el" href="classCgnControl.html" title="Communicates with external control apprication running on a secondary PC. ">CgnControl</a> reads incoming serial text from Arduino's standard <code>Serial</code> using <code>readStringUntil</code> method. The received text is assumed to be composed of two elements, "code" and "value", separated by a colon (e.g., 1:2000, 2:3.14, or 5:trainingMode). A "code" is an integer which precede the colon, and can be used for conditional branching in your Sketch (detailed example usage will be presented below). A "value" is an arbitrary text that succeeds the colon, and is the value you want to pass to Arduino. <a class="el" href="classCgnControl.html" title="Communicates with external control apprication running on a secondary PC. ">CgnControl</a> decompose received text into these two elements by spliting it at intervened colon. By accessing these elements by <code>getCode</code> and <code>getValue</code> methods, you can prepare arbitrary conditional branches in your Sketch.</p>
+<div class="fragment"><div class="line"><a class="code" href="classCgnControl.html">CgnControl</a> ctrl;</div><div class="line"><span class="keywordtype">int</span> x;</div><div class="line"><span class="keywordtype">float</span> y;</div><div class="line">String z;</div><div class="line"></div><div class="line">ctrl.<a class="code" href="classCgnControl.html#a4b2bbe20e02aac418f974a8588193fcd">update</a>();</div><div class="line"><span class="keywordflow">switch</span> (ctrl.<a class="code" href="classCgnControl.html#a47f79ffa0386c96280c600eed2cf89a5">getCode</a>()) {</div><div class="line">  <span class="keywordflow">case</span> 1:</div><div class="line">    x = ctrl.<a class="code" href="classCgnControl.html#a1a5a50894732d9b27984fb459c9092de">getValue</a>().toInt();</div><div class="line">    <span class="keywordflow">break</span>;</div><div class="line">  <span class="keywordflow">case</span> 2:</div><div class="line">    y = ctrl.<a class="code" href="classCgnControl.html#a1a5a50894732d9b27984fb459c9092de">getValue</a>().toFloat();</div><div class="line">    <span class="keywordflow">break</span>;</div><div class="line">  <span class="keywordflow">case</span> 5:</div><div class="line">    z = ctrl.<a class="code" href="classCgnControl.html#a1a5a50894732d9b27984fb459c9092de">getValue</a>();</div><div class="line">    <span class="keywordflow">break</span>;</div><div class="line">}</div></div><!-- fragment --><p>In the example above, you can dynamically change the value of <code>x</code> to <code>2000</code> by sending 1:2000 through a serial. Similarly, sending 2:3.14 will set <code>y</code> as <code>3.14</code>, and 5:trainingMode set <code>z</code> as <code>"trainingMode"</code>. As this example shows, how the received value is used in conditional branches is completely up to you. In other words, the received value is simply left in String type, so you need to put appropriate type casting and explicitly determine which variable should store that value in each <code>case</code> branches.</p>
+<p>If received text is composed only one character, <a class="el" href="classCgnControl.html" title="Communicates with external control apprication running on a secondary PC. ">CgnControl</a> regards it as an ascii-coded integer. This allows you an easy conditional control on task's behavior by one-character serial emittion. For example, on receiving a text "A", <a class="el" href="classCgnControl.html" title="Communicates with external control apprication running on a secondary PC. ">CgnControl</a> regards it as a "code" of <code>65</code> (ascii code of upper "A"). Samely sending "a" is received as a "code" of <code>97</code>. Therefore, just typing "A" and "a", you can turn on and off the 13th GPIO pin in the example code below.</p>
+<div class="fragment"><div class="line">ctrl.<a class="code" href="classCgnControl.html#a4b2bbe20e02aac418f974a8588193fcd">update</a>();</div><div class="line"><span class="keywordflow">switch</span> (ctrl.<a class="code" href="classCgnControl.html#a47f79ffa0386c96280c600eed2cf89a5">getCode</a>()) {</div><div class="line">  <span class="keywordflow">case</span> 65:</div><div class="line">    digitalWrite(13, HIGH);</div><div class="line">    <span class="keywordflow">break</span>;</div><div class="line">  <span class="keywordflow">case</span> 97:</div><div class="line">    digitalWrite(13, LOW);</div><div class="line">    <span class="keywordflow">break</span>;</div><div class="line">}</div></div><!-- fragment --><p>As this example clearly shows, you don't need to restrict the usage of <a class="el" href="classCgnControl.html" title="Communicates with external control apprication running on a secondary PC. ">CgnControl</a> for variable modification. In fact, it offers an flexible mechanism with which you can perform arbitrary on-line conditional branching through serial interaction. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a393d29b1982a966244e989830a7b8a52"></a>
 <div class="memitem">
@@ -126,36 +131,9 @@ String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">e</td><td>EOL for serial inputs (by default \n). </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="af6b75faef7e2c52a40446aad5f41bc26"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String CgnControl::update </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>decompose</em> = <code>true</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks the serial buffer for a new input line. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">decompose</td><td>Whether to decompose the input text (see Details of the class). </td></tr>
   </table>
   </dd>
 </dl>

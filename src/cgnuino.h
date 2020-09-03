@@ -21,7 +21,100 @@ constexpr byte N_CGNDI = 10; //!< Number of pins that can be simultaneously set 
 constexpr byte N_CGNDO = 10; //!< Number of pins that can be simultaneously set for a CgnDO instance.
 
 /*!
- * @brief Communicates with external control apprication running on the PC.
+ * @brief Communicates with external control apprication running on a secondary PC.
+ *
+ * In normal psychological experiments in humans,
+ * no "manpowered" monitoring of task progression is usually required.
+ * Once the task is run for a given participant,
+ * values of the variables in the task
+ * will change by themselves, i.e., as you programmed in the code.
+ * However, especially in animal experiments,
+ * there are situations you come to wish for on-line modification
+ * of variable without stopping the task.
+ * For example, you may want to change the time length of
+ * certain task period or parameter, depending on the animal's
+ * temporary motivational state.
+ * You may also want to prepare more or less different
+ * task modes in a single Arduino Sketch,
+ * and manually switch them pro re nata.
+ *
+ * Although this is somewhat a difficult request for
+ * "compiled language" like Arduino,
+ * you can achieve it by sending command through a serial connection
+ * and receiving it via CgnControl class.
+ * CgnControl reads incoming serial text from Arduino's
+ * standard \c Serial using \c readStringUntil method.
+ * The received text is assumed to be composed of
+ * two elements, "code" and "value", separated by a colon
+ * (e.g., 1:2000, 2:3.14, or 5:trainingMode).
+ * A "code" is an integer which precede the colon,
+ * and can be used for conditional branching in your Sketch
+ * (detailed example usage will be presented below).
+ * A "value" is an arbitrary text that succeeds the colon,
+ * and is the value you want to pass to Arduino.
+ * CgnControl decompose received text into these two elements
+ * by spliting it at intervened colon.
+ * By accessing these elements by \c getCode and \c getValue methods,
+ * you can prepare arbitrary conditional branches in your Sketch.
+ *
+ * \code
+ * CgnControl ctrl;
+ * int x;
+ * float y;
+ * String z;
+ * 
+ * ctrl.update();
+ * switch (ctrl.getCode()) {
+ *   case 1:
+ *     x = ctrl.getValue().toInt();
+ *     break;
+ *   case 2:
+ *     y = ctrl.getValue().toFloat();
+ *     break;
+ *   case 5:
+ *     z = ctrl.getValue();
+ *     break;
+ * }
+ * \endcode
+ *
+ * In the example above, you can dynamically change
+ * the value of \c x to \c 2000 by sending 1:2000 through a serial.
+ * Similarly, sending 2:3.14 will set \c y as \c 3.14,
+ * and 5:trainingMode set \c z as \c "trainingMode".
+ * As this example shows, how the received value
+ * is used in conditional branches is completely up to you.
+ * In other words, the received value is simply left in String type,
+ * so you need to put appropriate type casting and
+ * explicitly determine which variable should store that value
+ * in each \c case branches.
+ *
+ * If received text is composed only one character,
+ * CgnControl regards it as an ascii-coded integer.
+ * This allows you an easy conditional control on task's behavior
+ * by one-character serial emittion.
+ * For example, on receiving a text "A", CgnControl regards
+ * it as a "code" of \c 65 (ascii code of upper "A").
+ * Samely sending "a" is received as a "code" of \c 97.
+ * Therefore, just typing "A" and "a",
+ * you can turn on and off the 13th GPIO pin in the example code below.
+ *
+ * \code
+ * ctrl.update();
+ * switch (ctrl.getCode()) {
+ *   case 65:
+ *     digitalWrite(13, HIGH);
+ *     break;
+ *   case 97:
+ *     digitalWrite(13, LOW);
+ *     break;
+ * }
+ * \endcode
+ *
+ * As this example clearly shows, you don't need to restrict
+ * the usage of CgnControl for variable modification.
+ * In fact, it offers an flexible mechanism with which
+ * you can perform arbitrary on-line conditional branching
+ * through serial interaction.
 **/
 class CgnControl {
   public:
