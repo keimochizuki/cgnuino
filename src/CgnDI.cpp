@@ -2,6 +2,7 @@
  * @file CgnDI.cpp
  * @brief Definition of CgnDI class.
  * @author Kei Mochizuki
+ * @example DI.ino
 **/
 
 #include "Arduino.h"

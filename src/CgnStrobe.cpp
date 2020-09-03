@@ -2,6 +2,7 @@
  * @file CgnStrobe.cpp
  * @brief Definition of CgnStrobe class.
  * @author Kei Mochizuki
+ * @example Strobe.ino
 **/
 
 #include "Arduino.h"

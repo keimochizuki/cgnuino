@@ -2,6 +2,7 @@
  * @file CgnValtiel.cpp
  * @brief Definition of CgnValtiel class.
  * @author Kei Mochizuki
+ * @example Valtiel.ino
 **/
 
 #include "Arduino.h"

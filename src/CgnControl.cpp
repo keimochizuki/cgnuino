@@ -2,6 +2,7 @@
  * @file CgnControl.cpp
  * @brief Definition of CgnControl class.
  * @author Kei Mochizuki
+ * @example Control.ino
 **/
 
 #include "Arduino.h"
