@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['is',['is',['../classCgnPeriod.html#a314dc02f428d3a59c7f3dbae3d88a9d7',1,'CgnPeriod']]]
+  ['keep',['keep',['../classCgnDI.html#a38722814960c6459e78e822ee064081d',1,'CgnDI::keep()'],['../classCgnLogger.html#afdca8036a131c8e0622efeefec4549d7',1,'CgnLogger::keep()']]]
 ];

@@ -39,7 +39,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -79,10 +78,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">LchikaWave.ino</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="cgnuino_8h.html">cgnuino.h</a>&quot;</span></div><div class="line"></div><div class="line"><a name="_a0"></a><a class="code" href="classCgnStopwatch.html">CgnStopwatch</a> sw;</div><div class="line"><a name="_a1"></a><a class="code" href="classCgnDO.html">CgnDO</a> led = <a class="code" href="classCgnDO.html">CgnDO</a>(8, 4);</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> setup() {</div><div class="line">  Serial.begin(115200);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> loop() {</div><div class="line">  led.<a name="a2"></a><a class="code" href="classCgnDO.html#a82059b0f49870691dbd708d546f495c6">update</a>();</div><div class="line">  <span class="keywordflow">if</span> (sw.<a name="a3"></a><a class="code" href="classCgnStopwatch.html#a87f3eb5cee29d4e622841df5b9f350b9">get</a>() &gt; 1000) {</div><div class="line">    sw.<a name="a4"></a><a class="code" href="classCgnStopwatch.html#a2efe7f5c956b63131426ac293d9eba89">lap</a>();</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; i++) {</div><div class="line">      led.<a name="a5"></a><a class="code" href="classCgnDO.html#a19290a1b1317d43df6b4f563d56676c4">out</a>(i, 200 * (i + 1));</div><div class="line">    }</div><div class="line">  }</div><div class="line">  delay(1);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> </div><!-- contents -->
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;cgnuino.h&quot;</span></div><div class="line"></div><div class="line"><a name="_a0"></a><a class="code" href="classCgnStopwatch.html">CgnStopwatch</a> sw;</div><div class="line"><a name="_a1"></a><a class="code" href="classCgnDO.html">CgnDO</a> led = <a class="code" href="classCgnDO.html">CgnDO</a>(8, 4);</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> setup() {</div><div class="line">  Serial.begin(115200);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> loop() {</div><div class="line">  led.<a name="a2"></a><a class="code" href="classCgnDO.html#a82059b0f49870691dbd708d546f495c6">update</a>();</div><div class="line">  <span class="keywordflow">if</span> (sw.<a name="a3"></a><a class="code" href="classCgnStopwatch.html#a87f3eb5cee29d4e622841df5b9f350b9">get</a>() &gt; 1000) {</div><div class="line">    sw.<a name="a4"></a><a class="code" href="classCgnStopwatch.html#a2efe7f5c956b63131426ac293d9eba89">lap</a>();</div><div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; i++) {</div><div class="line">      led.<a name="a5"></a><a class="code" href="classCgnDO.html#a19290a1b1317d43df6b4f563d56676c4">out</a>(i, 200 * (i + 1));</div><div class="line">    }</div><div class="line">  }</div><div class="line">  delay(1);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 3 2020 17:23:25 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Sep 3 2020 17:26:17 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
