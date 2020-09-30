@@ -35,7 +35,7 @@ constexpr byte N_CGNDO = 10; //!< Number of pins that can be simultaneously set 
  * certain task period or parameter, depending on the animal's
  * temporary motivational state.
  * You may also want to prepare more or less different
- * task modes in a single Arduino Sketch,
+ * task modes in a single Arduino sketch,
  * and manually switch them pro re nata.
  *
  * Although this is somewhat a difficult request for
@@ -48,14 +48,14 @@ constexpr byte N_CGNDO = 10; //!< Number of pins that can be simultaneously set 
  * two elements, "code" and "value", separated by a colon
  * (e.g., 1:2000, 2:3.14, or 5:trainingMode).
  * A "code" is an integer which precede the colon,
- * and can be used for conditional branching in your Sketch
+ * and can be used for conditional branching in your sketch
  * (detailed example usage will be presented below).
  * A "value" is an arbitrary text that succeeds the colon,
  * and is the value you want to pass to Arduino.
  * CgnControl decompose received text into these two elements
  * by spliting it at intervened colon.
  * By accessing these elements by \c getCode and \c getValue methods,
- * you can prepare arbitrary conditional branches in your Sketch.
+ * you can prepare arbitrary conditional branches in your sketch.
  *
  * \code
  * CgnControl ctrl;
