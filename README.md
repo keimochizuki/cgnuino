@@ -1,5 +1,5 @@
 # cgnuino
-Library for behavioral task controls in cognitive psychology and neuroscience.
+Arduino library for behavioral task controls in cognitive psychology and neuroscience.
 
 # License
 This library is free software;
