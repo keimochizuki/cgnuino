@@ -103,7 +103,37 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a038c44a9c6889491e32619aef563a094"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl><dt><b>Examples: </b></dt><dd><a class="el" href="Strobe_8ino-example.html#_a0">Strobe.ino</a>.</dd>
+<div class="textblock"><p><a class="el" href="classCgnStrobe.html" title="Emits a text as one-by-one characters using (8 + 1)-bit digital-out. ">CgnStrobe</a> is a rather peculiar facility compared with other classes in this library. It converts arbitrary length of text to 8-bit digital outputs, and emits it by strobing the other one digital-out pin. This can be used to emit event timing signal in a good time resolution, maintaining the differentiation of multiple event identities.</p>
+<p>In implementing behavioral tasks with Arduino, experimental data are supposed to be saved to a text file on the PC through a USB serial. In serial communication, emitted texts are designed to be first buffered and wait for a short period to be actually sent. This delay is typically less than several milliseconds, and possibly dozens of milliseconds even at maximum. Still a serial is regarded as unreliable for strict event timing outputs for this buffering problem.</p>
+<p>To put out strict timing signal, you can use a mere digital outputs from Arduino. The rising/falling edge of digital signal can be captured by external data acquisition device practically without any delay. Although this method is a classic in sending event timing , it is somewhat unsophisticated since this kind of digital outputs cannot hold information other than the timing. In other words, a single line of digital signal cannot tell what event is taken place. For example, if there are 10 different events in your task (e.g., trial start, cue on, cue off, response start, button press, etc...) you need 10 digital-out pins to mark the occurrences of these possible events individually.</p>
+<p>To overcome these weak points, you can combine event timing marks by a digital output and multi-bit binary representation of characters. For example, you can express 256 different combination of 0/1 bit pattern using eight digital pins. Which bit pattern corresponds to what character is actually universal for standard English characters as Ascii table (<a href="http://www.asciitable.com/">http://www.asciitable.com/</a>).</p>
+<table class="doxtable">
+<tr>
+<th align="center">+ </th><th align="center">0 </th><th align="center">1 </th><th align="center">2 </th><th align="center">3 </th><th align="center">4 </th><th align="center">5 </th><th align="center">6 </th><th align="center">7 </th><th align="center">8 </th><th align="center">9  </th></tr>
+<tr>
+<td align="center">3x</td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center">! </td><td align="center">"</td><td align="center">#</td><td align="center">$</td><td align="center">%</td><td align="center">&amp;</td><td align="center">' </td></tr>
+<tr>
+<td align="center">4x</td><td align="center">( </td><td align="center">) </td><td align="center">* </td><td align="center">+ </td><td align="center">, </td><td align="center">- </td><td align="center">.</td><td align="center">/ </td><td align="center">0 </td><td align="center">1 </td></tr>
+<tr>
+<td align="center">5x</td><td align="center">2 </td><td align="center">3 </td><td align="center">4 </td><td align="center">5 </td><td align="center">6 </td><td align="center">7 </td><td align="center">8 </td><td align="center">9 </td><td align="center">: </td><td align="center">; </td></tr>
+<tr>
+<td align="center">6x</td><td align="center">&lt; </td><td align="center">= </td><td align="center">&gt; </td><td align="center">? </td><td align="center">@</td><td align="center">A </td><td align="center">B </td><td align="center">C </td><td align="center">D </td><td align="center">E </td></tr>
+<tr>
+<td align="center">7x</td><td align="center">F </td><td align="center">G </td><td align="center">H </td><td align="center">I </td><td align="center">J </td><td align="center">K </td><td align="center">L </td><td align="center">M </td><td align="center">N </td><td align="center">O </td></tr>
+<tr>
+<td align="center">8x</td><td align="center">P </td><td align="center">Q </td><td align="center">R </td><td align="center">S </td><td align="center">T </td><td align="center">U </td><td align="center">V </td><td align="center">W </td><td align="center">X </td><td align="center">Y </td></tr>
+<tr>
+<td align="center">9x</td><td align="center">Z </td><td align="center">[ </td><td align="center">\ </td><td align="center">] </td><td align="center">^ </td><td align="center">_ </td><td align="center">` </td><td align="center">a </td><td align="center">b </td><td align="center">c </td></tr>
+<tr>
+<td align="center">10x</td><td align="center">d </td><td align="center">e </td><td align="center">f </td><td align="center">g </td><td align="center">h </td><td align="center">i </td><td align="center">j </td><td align="center">k </td><td align="center">l </td><td align="center">m </td></tr>
+<tr>
+<td align="center">11x</td><td align="center">n </td><td align="center">o </td><td align="center">p </td><td align="center">q </td><td align="center">r </td><td align="center">s </td><td align="center">t </td><td align="center">u </td><td align="center">v </td><td align="center">w </td></tr>
+<tr>
+<td align="center">12x</td><td align="center">x </td><td align="center">y </td><td align="center">z </td><td align="center">{ </td><td align="center"></td><td align="center">} </td><td align="center">~ </td><td align="center"></td><td align="center"></td><td align="center"></td></tr>
+</table>
+<p>Each row corresponds tens place and column ones place. As shown in the table, standard English characters are represented by values ranging from 0 to 127. For example, upper "A" corresponds to 65, and lower "a" corresponds to 97. The value 97 is expressed as 1100001 in binary representation (i.e., 64 + 32 + 1). Therefore, you can express a letter "a" by pulling up the 8th, 7th and 1st bits of the 8-bit set of digital-out pins. However, changing all the eight digital-out pins simultaneously, accurately in microsecond order, is somewhat an uncertain operation. This is why you need the last 9th bit for precise temporal timing. You first change the eight digital-out pins to represent an arbitrary character, and when ready, pull up the 9th pin. This works as a strobe light in photography, and enables temporally accurate transmission of a character. And by repeating 8-bit change and 9th bit rise (and then fall, of course), you can send any length of text you want, but only one-by-one at a time.</p>
+<p>Some commercial data acquisition devices have receiver mechanism of this character representation. (I personally created this class to use it with Power1401 device from CED.) By using <a class="el" href="classCgnStrobe.html" title="Emits a text as one-by-one characters using (8 + 1)-bit digital-out. ">CgnStrobe</a> class with those kind of devices, you can transmit texts easily and temporally more accurate way compared with a USB serial connection. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Strobe_8ino-example.html#_a0">Strobe.ino</a>.</dd>
 </dl></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a2b529bfaaa9bec4011e46cf9899e99eb"></a>
 <div class="memitem">
@@ -113,13 +143,13 @@ Public Member Functions</h2></td></tr>
           <td class="memname">CgnStrobe::CgnStrobe </td>
           <td>(</td>
           <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramname"><em>firstPin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>l</em> = <code>5</code>&#160;</td>
+          <td class="paramname"><em>strobeUs</em> = <code>5</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -130,8 +160,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>First pin number for digital-out pins. </td></tr>
-    <tr><td class="paramname">l</td><td>Length of each character in [us] (<b>MICRO-seconds</b>). </td></tr>
+    <tr><td class="paramname">firstPin</td><td>First pin number for digital-out pins. </td></tr>
+    <tr><td class="paramname">strobeUs</td><td>Length of each character in [us] (<b>MICRO-seconds</b>). </td></tr>
   </table>
   </dd>
 </dl>
@@ -147,14 +177,14 @@ Public Member Functions</h2></td></tr>
           <td class="memname">uint32_t CgnStrobe::out </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramname"><em>txt</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>Text to be put out. </td></tr>
+    <tr><td class="paramname">txt</td><td>Text to be put out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -169,7 +199,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 1 2020 11:14:29 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 17 2020 12:30:22 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

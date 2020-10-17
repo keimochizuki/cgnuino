@@ -88,8 +88,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Emits asynchroneous tone output.  
-</p>
+<p>Emits asynchroneous tone output in a similar way to <a class="el" href="classCgnDO.html" title="Emits asynchroneous digital-out. ">CgnDO</a> class.  
+ <a href="classCgnTone.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="cgnuino_8h_source.html">cgnuino.h</a>&gt;</code></p>
 <table class="memberdecls">
@@ -105,7 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4379661f4fb726cb4e2c49e6b3260dc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a tone out from a pin for determined time length.  <a href="#a4379661f4fb726cb4e2c49e6b3260dc0">More...</a><br /></td></tr>
 <tr class="separator:a4379661f4fb726cb4e2c49e6b3260dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>In order to asynchroneously emit digital outputs, cgnuino has <a class="el" href="classCgnDO.html" title="Emits asynchroneous digital-out. ">CgnDO</a> class dedicated to that purpose. The same demand for tone output instead of digital outputs can be met by <a class="el" href="classCgnTone.html" title="Emits asynchroneous tone output in a similar way to CgnDO class. ">CgnTone</a> class. The usage is almost identical to <a class="el" href="classCgnDO.html" title="Emits asynchroneous digital-out. ">CgnDO</a> class except that <a class="el" href="classCgnTone.html" title="Emits asynchroneous tone output in a similar way to CgnDO class. ">CgnTone</a> class only use one out pin, instead of holding multiple digital-out pins. (Usually multiple tone outputs are not required in standard behavioral tasks.) Start beeping a piezo buzzer in a required frequency by <code>out</code> method. Then repeatedly call <code>update</code> method so that it can terminate tone output once a designated time length has passed. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="af07c4b98fd2f50b9c5bddfb04bfa658a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -114,14 +116,14 @@ Public Member Functions</h2></td></tr>
           <td class="memname">CgnTone::CgnTone </td>
           <td>(</td>
           <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>p</em></td><td>)</td>
+          <td class="paramname"><em>tonePin</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>Pin number for digital-out to a piezo buzzer. </td></tr>
+    <tr><td class="paramname">tonePin</td><td>Pin number for digital-out to a piezo buzzer. </td></tr>
   </table>
   </dd>
 </dl>
@@ -137,13 +139,13 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void CgnTone::out </td>
           <td>(</td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>l</em>, </td>
+          <td class="paramname"><em>toneMs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>f</em> = <code>440</code>&#160;</td>
+          <td class="paramname"><em>toneFreq</em> = <code>440</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -154,8 +156,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">l</td><td>Time length of output in [ms]. </td></tr>
-    <tr><td class="paramname">f</td><td>Frequency of tone output in [Hz]. </td></tr>
+    <tr><td class="paramname">toneMs</td><td>Time length of output in [ms]. </td></tr>
+    <tr><td class="paramname">toneFreq</td><td>Frequency of tone output in [Hz]. </td></tr>
   </table>
   </dd>
 </dl>
@@ -185,7 +187,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 1 2020 11:14:29 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 17 2020 12:30:22 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

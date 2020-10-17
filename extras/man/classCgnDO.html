@@ -106,7 +106,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a19290a1b1317d43df6b4f563d56676c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Digital-out pins make Arduino boards emit digital signal as high (5V [or 3.3V]) or low (0V) voltage. </p>
+<div class="textblock"><p>Digital-out pins make Arduino boards emit digital signal, i.e., high (5V [or 3.3V]) or low (0V) voltage. These pins are normally turned on and off via Arduino's built-in <code>digitalWrite</code> function. For example, if you want to flash an LED connected to a given pin for a second, you can achieve it with a simple code as below.</p>
+<div class="fragment"><div class="line">byte pin = 13;</div><div class="line">pinMode(pin, OUTPUT);</div><div class="line">digitalWrite(pin, HIGH);</div><div class="line">delay(1000);</div><div class="line">digitalWrite(pin, LOW);</div></div><!-- fragment --><p>Since <code>delay</code> function sleeps all the execution of your board for a given length (designated in millisecond), the LED will be extinguished 1000 ms after it is lighted. This way you can activate arbitrary external devices for any time length you want. However, as mentioned above, when you use <code>delay</code> function, all the performance of your Arduino board is suspended until the designated time length has passed. This is problematic in controlling behavioral tasks. There are times that you want to turn on a given digital-out pin for a certain length, while you keep continuing other processes (e.g., monitoring subject's button press through digital-in pins). In other words, you will miss subject's button press and release while you are suspending your board using <code>delay</code> function.</p>
+<p><a class="el" href="classCgnDO.html" title="Emits asynchroneous digital-out. ">CgnDO</a> class provides an easy way to overcome this problem. At construction, <a class="el" href="classCgnDO.html" title="Emits asynchroneous digital-out. ">CgnDO</a> class prepares multiple pins as digital outputs. Maximal number of pins for one instance of this class is determined by a constant <code>N_CGNDO</code>. To put out high digital output, use <code>out</code> method by designating both the index of the digital-out pin (but in count from the predetermined first output pin instead of the absolute pin number of the board) and the time length of the output in millisecond. This puts up the designated digital-out pin to high voltage. Then you need to repeatedly call <code>update</code> method. This method checks if the required time has passed, and if so, turns off the pin to low voltage. In normal, this monitoring is achieved by calling <code>update</code> method in the beginning of your main <code>loop</code> function.</p>
+<p>Because of the functional mechanism mentioned above, <a class="el" href="classCgnDO.html" title="Emits asynchroneous digital-out. ">CgnDO</a> class is accurate and makes sense only when your <code>loop</code> is repeated in a reasonably frequent cycle. For example, if your <code>loop</code> is run every 5 ms on average, the length of digital output from <a class="el" href="classCgnDO.html" title="Emits asynchroneous digital-out. ">CgnDO</a> class is accurate with maximal 5 ms deviation, which would be acceptable in standard psychological tasks. Note that you can easily monitor the frequency of your <code>loop</code> by using <a class="el" href="classCgnValtiel.html" title="Monitors average length of executed loops on Arduino. ">CgnValtiel</a> class. Also note that outputs from <a class="el" href="classCgnDO.html" title="Emits asynchroneous digital-out. ">CgnDO</a> class can be simultaneously done from multiple pins with respectively different time lengths. LchikaWave example will provide a simple example of this usage of <a class="el" href="classCgnDO.html" title="Emits asynchroneous digital-out. ">CgnDO</a> class. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="Lchika_8ino-example.html#_a1">Lchika.ino</a>, and <a class="el" href="LchikaWave_8ino-example.html#_a1">LchikaWave.ino</a>.</dd>
 </dl></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a23155dea94b636394f0ae14c2bde5b32"></a>
@@ -117,13 +120,13 @@ Public Member Functions</h2></td></tr>
           <td class="memname">CgnDO::CgnDO </td>
           <td>(</td>
           <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramname"><em>firstPin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>s</em> = <code>1</code>&#160;</td>
+          <td class="paramname"><em>numberOfOutputs</em> = <code>1</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -134,8 +137,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>First pin number for digital-out pins. </td></tr>
-    <tr><td class="paramname">s</td><td>Number of digital-out pins. </td></tr>
+    <tr><td class="paramname">firstPin</td><td>First pin number for digital-out pins. </td></tr>
+    <tr><td class="paramname">numberOfOutputs</td><td>Number of digital outputs in use. </td></tr>
   </table>
   </dd>
 </dl>
@@ -157,7 +160,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>l</em>&#160;</td>
+          <td class="paramname"><em>outputMs</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -168,8 +171,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>Index of DO pin to emit digital-out. </td></tr>
-    <tr><td class="paramname">l</td><td>Time length of output in [ms]. </td></tr>
+    <tr><td class="paramname">i</td><td>Index of DO pin to emit digital output. </td></tr>
+    <tr><td class="paramname">outputMs</td><td>Time length of output in [ms]. </td></tr>
   </table>
   </dd>
 </dl>
@@ -201,7 +204,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 1 2020 11:14:29 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 17 2020 12:30:22 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

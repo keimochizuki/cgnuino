@@ -119,7 +119,9 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <tr class="separator:a3aa632ae76af8ae55d0733a75471c107"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl><dt><b>Examples: </b></dt><dd><a class="el" href="Period_8ino-example.html#_a1">Period.ino</a>.</dd>
+<div class="textblock"><p>A trial in a behavioral task is composed of multiple task periods (also called as epochs), which are temporal intervals within which a set of task events or desired participant's actions are taken place. For example, an LED flash is provided in the cue period, and the participant should press a button as soon as possible in the subsequent response period. Some task periods have time limitation, while others can last forever until predetermined conditions are fulfilled.</p>
+<p>To manage the transition of numbers of task periods, <a class="el" href="classCgnPeriod.html" title="Remembers current task period and its time constraint. ">CgnPeriod</a> class offers a handy cutoff to you. It simply remembers the current task period designated by <code>set</code> method. By using <a class="el" href="classCgnPeriod.html" title="Remembers current task period and its time constraint. ">CgnPeriod</a> class, conditional branching in your main code will become more readable. If you designate time length of the period on calling <code>set</code> method, <a class="el" href="classCgnPeriod.html" title="Remembers current task period and its time constraint. ">CgnPeriod</a> class also maintain that information so that you can monitor the expiration of the predetermined time limit using <code>expire</code> method. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Period_8ino-example.html#_a0">Period.ino</a>.</dd>
 </dl></div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a314dc02f428d3a59c7f3dbae3d88a9d7"></a>
 <div class="memitem">
@@ -129,18 +131,18 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
           <td class="memname">bool CgnPeriod::is </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramname"><em>periodName</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>Name of the candidate task period. </td></tr>
+    <tr><td class="paramname">periodName</td><td>Name of the candidate task period. </td></tr>
   </table>
   </dd>
 </dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Period_8ino-example.html#a3">Period.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Period_8ino-example.html#a2">Period.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -152,13 +154,13 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
           <td class="memname">void CgnPeriod::set </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
+          <td class="paramname"><em>newPeriod</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>l</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>lengthMs</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -169,12 +171,12 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>Name of the current task period. </td></tr>
-    <tr><td class="paramname">l</td><td>Maximum length of current task period in [ms]. </td></tr>
+    <tr><td class="paramname">newPeriod</td><td>Name of the new task period. </td></tr>
+    <tr><td class="paramname">lengthMs</td><td>Maximum length of current task period in [ms]. </td></tr>
   </table>
   </dd>
 </dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Period_8ino-example.html#a2">Period.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Period_8ino-example.html#a1">Period.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -185,7 +187,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 1 2020 11:14:29 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 17 2020 12:30:22 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

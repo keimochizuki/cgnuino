@@ -1,7 +1,7 @@
 #include "cgnuino.h"
 
 CgnStopwatch sw;
-CgnDI swtch = CgnDI(7, 1, 13);
+CgnDI swtch = CgnDI(2, 1, 13);
 byte n = 0;
 
 void setup() {
@@ -10,7 +10,7 @@ void setup() {
 
 void loop() {
   swtch.update();
-  if (swtch.turnon(0)) {
+  if (swtch.turnon()) {
     Serial.print(sw.lap());
     n += 1;
     if (n < 3) {

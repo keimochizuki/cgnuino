@@ -89,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 
 <p>Stores trial information and print it to the Serial.  
-</p>
+ <a href="classCgnData.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="cgnuino_8h_source.html">cgnuino.h</a>&gt;</code></p>
 <table class="memberdecls">
@@ -110,7 +110,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a781f670937ab443b3ed4d17b1c71287e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears existing output buffer. <br /></td></tr>
 <tr class="separator:a781f670937ab443b3ed4d17b1c71287e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classCgnData.html" title="Stores trial information and print it to the Serial. ">CgnData</a> class is a simple string container for temporally storing task information of a current trial. It concatenates strings provided by <code>append</code> method to its internal data string, inserting a predetermined separater character (by default \t). So you can temporally store trial conditions, response times, correct/error flags, or whatever information about current trial. When a trial ended, you can print the resultant data string to regular Serial using <code>out</code> method. If a trial is aborted during a progression and the data is no more needed, you can clear the temporal storage by <code>clear</code> method. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a0e70e9db87fc9f0f3bb2ef1906f4c7f7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -119,14 +121,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="memname">CgnData::CgnData </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>s</em> = <code>9</code></td><td>)</td>
+          <td class="paramname"><em>separatingChar</em> = <code>9</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>Separator for serial outputs (by default \t). </td></tr>
+    <tr><td class="paramname">separatingChar</td><td>Separator for serial outputs (by default \t). </td></tr>
   </table>
   </dd>
 </dl>
@@ -142,14 +144,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="memname">void CgnData::append </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramname"><em>newData</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>Appended text. </td></tr>
+    <tr><td class="paramname">newData</td><td>Appended text data. </td></tr>
   </table>
   </dd>
 </dl>
@@ -163,7 +165,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 1 2020 11:14:29 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 17 2020 12:30:22 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

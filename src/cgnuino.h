@@ -95,7 +95,7 @@ constexpr byte N_CGNDO = 10; //!< Number of pins that can be simultaneously set 
  * For example, on receiving a text "A", CgnControl regards
  * it as a "code" of \c 65 (ascii code of upper "A").
  * Samely sending "a" is received as a "code" of \c 97.
- * Therefore, just typing "A" and "a",
+ * Therefore, just typing "A" and "a" (and then Enter to send it if needed),
  * you can turn on and off the 13th GPIO pin in the example code below.
  *
  * \code
@@ -219,15 +219,15 @@ class CgnControl {
  * called chattering or ripple, is problematic
  * since Arduino may misregard it as multiple numbers of
  * (really really) quick turing on and off of the switch.
- * To prevent it, CgnDI class omits input to a digital-in pin
+ * To prevent it, CgnDI class omits input from a digital-in pin
  * right after once a change occured (by default a few milliseconds),
  * discarding possible chattering input during this period.
  * Although absolute amount of time this silencing takes place
  * is universal to all the pins for a given CgnDI instance,
  * actual omission is performed separately for each pin.
  * In other words, if a change has occured to a given pin,
- * succeeding input to that same pin is omitted for a short period,
- * but inputs to other pins are regularly received and accessible.
+ * succeeding input from that same pin is omitted for a short period,
+ * but inputs from other pins are regularly received and accessible.
 **/
 class CgnDI {
   public:
@@ -255,8 +255,68 @@ class CgnDI {
 /*!
  * @brief Emits asynchroneous digital-out.
  *
- * Digital-out pins make Arduino boards emit digital signal as
- * high (5V [or 3.3V]) or low (0V) voltage.
+ * Digital-out pins make Arduino boards emit digital signal,
+ * i.e., high (5V [or 3.3V]) or low (0V) voltage.
+ * These pins are normally turned on and off
+ * via Arduino's built-in \c digitalWrite function.
+ * For example, if you want to flash an LED connected to
+ * a given pin for a second,
+ * you can achieve it with a simple code as below.
+ *
+ * \code
+ * byte pin = 13;
+ * pinMode(pin, OUTPUT);
+ * digitalWrite(pin, HIGH);
+ * delay(1000);
+ * digitalWrite(pin, LOW);
+ * \endcode
+ *
+ * Since \c delay function sleeps all the execution of
+ * your board for a given length (designated in millisecond),
+ * the LED will be extinguished 1000 ms after it is lighted.
+ * This way you can activate arbitrary external devices
+ * for any time length you want.
+ * However, as mentioned above,
+ * when you use \c delay function,
+ * all the performance of your Arduino board is suspended
+ * until the designated time length has passed.
+ * This is problematic in controlling behavioral tasks.
+ * There are times that
+ * you want to turn on a given digital-out pin for a certain length,
+ * while you keep continuing other processes
+ * (e.g., monitoring subject's button press through digital-in pins).
+ * In other words, you will miss subject's button press and release
+ * while you are suspending your board using \c delay function.
+ *
+ * CgnDO class provides an easy way to overcome this problem.
+ * At construction, CgnDO class prepares multiple pins as digital outputs.
+ * Maximal number of pins for one instance of this class
+ * is determined by a constant \c N_CGNDO.
+ * To put out high digital output, use \c out method
+ * by designating both the index of the digital-out pin
+ * (but in count from the predetermined first output pin
+ * instead of the absolute pin number of the board)
+ * and the time length of the output in millisecond.
+ * This puts up the designated digital-out pin to high voltage.
+ * Then you need to repeatedly call \c update method.
+ * This method checks if the required time has passed,
+ * and if so, turns off the pin to low voltage.
+ * In normal, this monitoring is achieved by calling
+ * \c update method in the beginning of your main \c loop function.
+ *
+ * Because of the functional mechanism mentioned above,
+ * CgnDO class is accurate and makes sense only when
+ * your \c loop is repeated in a reasonably frequent cycle.
+ * For example, if your \c loop is run every 5 ms on average,
+ * the length of digital output from CgnDO class
+ * is accurate with maximal 5 ms deviation,
+ * which would be acceptable in standard psychological tasks.
+ * Note that you can easily monitor the frequency of your \c loop
+ * by using CgnValtiel class.
+ * Also note that outputs from CgnDO class can be simultaneously done
+ * from multiple pins with respectively different time lengths.
+ * LchikaWave example will provide a simple example of this usage
+ * of CgnDO class.
 **/
 class CgnDO {
   public:
@@ -272,6 +332,20 @@ class CgnDO {
 
 /*!
  * @brief Stores trial information and print it to the Serial.
+ *
+ * CgnData class is a simple string container for temporally
+ * storing task information of a current trial.
+ * It concatenates strings provided by \c append method
+ * to its internal data string, inserting a predetermined
+ * separater character (by default @\t).
+ * So you can temporally store trial conditions,
+ * response times, correct/error flags, or whatever information
+ * about current trial.
+ * When a trial ended, you can print the resultant data string
+ * to regular Serial using \c out method.
+ * If a trial is aborted during a progression and
+ * the data is no more needed, you can clear the
+ * temporal storage by \c clear method.
 **/
 class CgnData {
   public:
@@ -286,7 +360,46 @@ class CgnData {
 };
 
 /*!
- * @brief Logs arbitorary bit change similar to CgnDI class.
+ * @brief Logs arbitrary boolean change in a similar way to CgnDI class.
+ *
+ * CgnLogger class provides an easy way to log and monitor
+ * changes of arbitrary boolean values
+ * in a similar way to CgnDI class.
+ * In case of CgnDI class, current states (high/low values)
+ * of digital-in pins are collected,
+ * while storing the previous values.
+ * This way not only the present values but also
+ * the changes of the pin states can be detected.
+ * CgnLogger class does the same thing to any boolean value
+ * that is provided once in each loop.
+ * You need to provide a boolean value to CgnLogger class
+ * by using \c update method at the beginning of each loop in normal.
+ * Then you can use the same methods to CgnDI class
+ * to check the value changes.
+ *
+ * For example, there are cases that you want to first
+ * get a value from an analog-in pin,
+ * judge the obtained value on your own arbitrary criteria,
+ * then monitor the changes of resulting boolean (true/false).
+ * This cannot be directly done by CgnDI class since
+ * the input value is not digitized.
+ * Thus you need CgnLogger class to utilize the same
+ * facility to CgnDI class in the case
+ * that a boolean variable is the target of tracking.
+ *
+ * Like CgnDI, CgnLogger class also has a debounce mechanism
+ * that prevents secondary value change shortly after
+ * once a change has occured.
+ * Since CgnLogger class does not deal with actual digital inputs
+ * (which can have occasional mechanical noizes),
+ * debouncing is essentially nonsense for this class.
+ * This is why the length of debounce is set to \c 0 by default.
+ * However, it is possible that the logged boolean value is
+ * judged from some noizy signal (like the usage of analog-in pin
+ * in the example above), which can cause quick and repetitive
+ * true/false alternation at the time of changes.
+ * In such cases, you can use debouncing to prevent
+ * restless value changes also in CgnLogger class.
 **/
 class CgnLogger {
   public:
@@ -311,6 +424,41 @@ class CgnLogger {
 
 /*!
  * @brief Temporally pauses task progression by digital-in pin state.
+ *
+ * During an experiment, there may be an occasion that
+ * you want to temporally stop the progression of the task.
+ * Normally, this is not common in human experiments
+ * in which the task should keep progressing until
+ * a predetermined number of trials are correctly finished.
+ * However, especially in animal experiments,
+ * you will often need to pause the task during an experiment.
+ * For example, you may not want the task to start
+ * before you finish booting all the measurement apparatus
+ * even if the animal is ready.
+ * In another case, you may need to halt the trial progression
+ * until you finish dealing with accidental failure of some device.
+ *
+ * CgnPause class provides a physical switching mechanism
+ * to temporally pause your task.
+ * It judges whether to proceed or not based on
+ * the high/low state of the designated digital-in pin.
+ * The pin is automatically pulled up at the time of
+ * construction of CgnPause instance.
+ * If the pin is connected to GND, CgnPause class
+ * halts the task until the pin becomes unconnected,
+ * i.e., re-connected to the internal pull-up.
+ * (This relationship can be inverted if you wish to.)
+ *
+ * If you want to pause the task at any timing during a trial,
+ * put \c check method on a main code of \c loop function
+ * so that the evaluation of pausing can occur in each loop.
+ * However, if the task is suddenly paused within a trial,
+ * it is possible that some output pins are stuck
+ * at undesired state
+ * (e.g., high-locked digital-out pin that keeps driving external device,
+ * tone output that keeps beeping during the pause).
+ * To prevent this, use \c check method in a task period
+ * dedicated for the pausing evaluation during an inter-trial interval.
 **/
 class CgnPause {
   public:
@@ -319,12 +467,33 @@ class CgnPause {
 
   private:
     byte pin;
-    bool stopwhen;
+    bool b;
     uint16_t cycle;
 };
 
 /*!
  * @brief Remembers current task period and its time constraint.
+ *
+ * A trial in a behavioral task is composed of
+ * multiple task periods (also called as epochs),
+ * which are temporal intervals within which
+ * a set of task events or desired participant's actions are taken place.
+ * For example, an LED flash is provided in the cue period,
+ * and the participant should press a button as soon as possible
+ * in the subsequent response period.
+ * Some task periods have time limitation, while others can last
+ * forever until predetermined conditions are fulfilled.
+ *
+ * To manage the transition of numbers of task periods,
+ * CgnPeriod class offers a handy cutoff to you.
+ * It simply remembers the current task period designated
+ * by \c set method.
+ * By using CgnPeriod class, conditional branching
+ * in your main code will become more readable.
+ * If you designate time length of the period on calling \c set method,
+ * CgnPeriod class also maintain that information
+ * so that you can monitor the expiration of the predetermined time limit
+ * using \c expire method.
 **/
 class CgnPeriod {
   public:
@@ -342,6 +511,17 @@ class CgnPeriod {
 
 /*!
  * @brief Measures time difference in milliseconds.
+ *
+ * In behavioral tasks, it is incredibly common
+ * for you to count elapsed time from a given origin.
+ * Being self-explanatory from its name,
+ * CgnStopwatch class works as a stopwatch for that faculty.
+ * After construction, call \c lap method to
+ * obtain the time length from the current origin,
+ * and then resetting the clock
+ * (i.e., set current time point as a new origin).
+ * Use \c get method to check the clock while maintaining
+ * the present origin.
 **/
 class CgnStopwatch {
   public:
@@ -355,6 +535,90 @@ class CgnStopwatch {
 
 /*!
  * @brief Emits a text as one-by-one characters using (8 + 1)-bit digital-out.
+ *
+ * CgnStrobe is a rather peculiar facility
+ * compared with other classes in this library.
+ * It converts arbitrary length of text to 8-bit digital outputs,
+ * and emits it by strobing the other one digital-out pin.
+ * This can be used to emit event timing signal
+ * in a good time resolution, maintaining the differentiation
+ * of multiple event identities.
+ *
+ * In implementing behavioral tasks with Arduino,
+ * experimental data are supposed to be saved
+ * to a text file on the PC through a USB serial.
+ * In serial communication, emitted texts are designed to be
+ * first buffered and wait for a short period
+ * to be actually sent.
+ * This delay is typically less than several milliseconds,
+ * and possibly dozens of milliseconds even at maximum.
+ * Still a serial is regarded as unreliable
+ * for strict event timing outputs for this buffering problem.
+ *
+ * To put out strict timing signal, you can use a mere
+ * digital outputs from Arduino.
+ * The rising/falling edge of digital signal can be captured
+ * by external data acquisition device practically without any delay.
+ * Although this method is a classic in sending event timing ,
+ * it is somewhat unsophisticated since this kind of digital outputs
+ * cannot hold information other than the timing.
+ * In other words, a single line of digital signal
+ * cannot tell what event is taken place.
+ * For example, if there are 10 different events in your task
+ * (e.g., trial start, cue on, cue off, response start, button press, etc...)
+ * you need 10 digital-out pins to mark the occurrences of these
+ * possible events individually.
+ *
+ * To overcome these weak points, you can combine
+ * event timing marks by a digital output
+ * and multi-bit binary representation of characters.
+ * For example, you can express 256 different combination
+ * of 0/1 bit pattern using eight digital pins.
+ * Which bit pattern corresponds to what character
+ * is actually universal for standard English characters
+ * as Ascii table (http://www.asciitable.com/).
+ *
+ * | + | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+ * |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+ * | 3x|   |   |   | ! | @"| @#| @$| @%| @&| ' |
+ * | 4x| ( | ) | * | + | , | - | @.| / | 0 | 1 |
+ * | 5x| 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | : | ; |
+ * | 6x| < | = | > | ? | @@| A | B | C | D | E |
+ * | 7x| F | G | H | I | J | K | L | M | N | O |
+ * | 8x| P | Q | R | S | T | U | V | W | X | Y |
+ * | 9x| Z | [ | \ | ] | ^ | _ | ` | a | b | c |
+ * |10x| d | e | f | g | h | i | j | k | l | m |
+ * |11x| n | o | p | q | r | s | t | u | v | w |
+ * |12x| x | y | z | { |   | } | ~ |   |   |   |
+ *
+ * Each row corresponds tens place and column ones place.
+ * As shown in the table, standard English characters are
+ * represented by values ranging from 0 to 127.
+ * For example, upper "A" corresponds to 65,
+ * and lower "a" corresponds to 97.
+ * The value 97 is expressed as 1100001 in binary representation
+ * (i.e., 64 + 32 + 1).
+ * Therefore, you can express a letter "a" by pulling up
+ * the 8th, 7th and 1st bits of the 8-bit set of digital-out pins.
+ * However, changing all the eight digital-out pins simultaneously,
+ * accurately in microsecond order, is somewhat an uncertain operation.
+ * This is why you need the last 9th bit for precise temporal timing.
+ * You first change the eight digital-out pins to represent
+ * an arbitrary character, and when ready, pull up the 9th pin.
+ * This works as a strobe light in photography, and enables
+ * temporally accurate transmission of a character.
+ * And by repeating 8-bit change and 9th bit rise
+ * (and then fall, of course),
+ * you can send any length of text you want,
+ * but only one-by-one at a time.
+ *
+ * Some commercial data acquisition devices have
+ * receiver mechanism of this character representation.
+ * (I personally created this class to use it with
+ * Power1401 device from CED.)
+ * By using CgnStrobe class with those kind of devices,
+ * you can transmit texts easily and temporally more accurate way
+ * compared with a USB serial connection.
 **/
 class CgnStrobe {
   public:
@@ -369,7 +633,21 @@ class CgnStrobe {
 };
 
 /*!
- * @brief Emits asynchroneous tone output.
+ * @brief Emits asynchroneous tone output in a similar way to CgnDO class.
+ *
+ * In order to asynchroneously emit digital outputs,
+ * cgnuino has CgnDO class dedicated to that purpose.
+ * The same demand for tone output instead of digital outputs
+ * can be met by CgnTone class.
+ * The usage is almost identical to CgnDO class except that
+ * CgnTone class only use one out pin,
+ * instead of holding multiple digital-out pins.
+ * (Usually multiple tone outputs are not required
+ * in standard behavioral tasks.)
+ * Start beeping a piezo buzzer in a required frequency
+ * by \c out method.
+ * Then repeatedly call \c update method so that it can terminate
+ * tone output once a designated time length has passed.
 **/
 class CgnTone {
   public:
@@ -384,6 +662,40 @@ class CgnTone {
 
 /*!
  * @brief Monitors average length of executed loops on Arduino.
+ *
+ * When prototyping your experiment,
+ * there are often times that you want to check
+ * whether your task is runnning in a reasonably good time resolution.
+ * Since some of the classes in cgnuino library is dependent
+ * on the frequency of \c loop function,
+ * it is important to correctly know how quick your \c loop
+ * is executed.
+ * CgnValtiel class offers an easy way for this.
+ * After you \c start the monitoring,
+ * call \c lap method once (and only once) in every \c loop call.
+ * (For example, put \c lap on the very beginning of your \c loop function.)
+ * CgnValtiel class counts the number of laps and the elapsed time
+ * from \c start, and tell you the average length of your \c loop
+ * (in millisecond).
+ * You can also check the maximal and minimal length of your \c loop
+ * by \c getMax and \c getMin method.
+ * These can be useful since there is a case that
+ * a loop gets unexpectedly overlong or overshort in
+ * only a realy realy small probability,
+ * thus leaving the average length superficially unaffected.
+ *
+ * CgnValtiel class is named for an imaginary creature
+ * which appears on a video game series "Silent Hill".
+ * Despite its dreadful appearance, it is actually not a monster
+ * but a servant of God of indigenous religion in Silent Hill
+ * (thus being a position of an angel).
+ * It governs metempsychosis or reincarnation,
+ * watching the tide of fates of living things.
+ * During a gameplay, it often appears with a revolving valve that
+ * symbolizes its religious role in reincarnation.
+ * In a deep respect for the Silent Hill series,
+ * CgnValtiel class was named for,
+ * for its role of monitoring the cycle of your experimental loops.
 **/
 class CgnValtiel {
   public:

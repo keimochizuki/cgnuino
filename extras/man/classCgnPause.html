@@ -104,7 +104,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:ae0de74d717fce76ecfeb440ce5ac2f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl><dt><b>Examples: </b></dt><dd><a class="el" href="Pause_8ino-example.html#_a0">Pause.ino</a>.</dd>
+<div class="textblock"><p>During an experiment, there may be an occasion that you want to temporally stop the progression of the task. Normally, this is not common in human experiments in which the task should keep progressing until a predetermined number of trials are correctly finished. However, especially in animal experiments, you will often need to pause the task during an experiment. For example, you may not want the task to start before you finish booting all the measurement apparatus even if the animal is ready. In another case, you may need to halt the trial progression until you finish dealing with accidental failure of some device.</p>
+<p><a class="el" href="classCgnPause.html" title="Temporally pauses task progression by digital-in pin state. ">CgnPause</a> class provides a physical switching mechanism to temporally pause your task. It judges whether to proceed or not based on the high/low state of the designated digital-in pin. The pin is automatically pulled up at the time of construction of <a class="el" href="classCgnPause.html" title="Temporally pauses task progression by digital-in pin state. ">CgnPause</a> instance. If the pin is connected to GND, <a class="el" href="classCgnPause.html" title="Temporally pauses task progression by digital-in pin state. ">CgnPause</a> class halts the task until the pin becomes unconnected, i.e., re-connected to the internal pull-up. (This relationship can be inverted if you wish to.)</p>
+<p>If you want to pause the task at any timing during a trial, put <code>check</code> method on a main code of <code>loop</code> function so that the evaluation of pausing can occur in each loop. However, if the task is suddenly paused within a trial, it is possible that some output pins are stuck at undesired state (e.g., high-locked digital-out pin that keeps driving external device, tone output that keeps beeping during the pause). To prevent this, use <code>check</code> method in a task period dedicated for the pausing evaluation during an inter-trial interval. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Pause_8ino-example.html#_a0">Pause.ino</a>.</dd>
 </dl></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aee3b049e6cb60966c2c83ff1778595ff"></a>
 <div class="memitem">
@@ -114,19 +117,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="memname">CgnPause::CgnPause </td>
           <td>(</td>
           <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramname"><em>pausePin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>b</em> = <code>LOW</code>, </td>
+          <td class="paramname"><em>stopWhen</em> = <code>LOW</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>c</em> = <code>100</code>&#160;</td>
+          <td class="paramname"><em>pauseMs</em> = <code>100</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -137,9 +140,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>Pin number of digital input. </td></tr>
-    <tr><td class="paramname">b</td><td>Pin value when the task should pause. </td></tr>
-    <tr><td class="paramname">c</td><td>Checking cycle for the task to restart in [ms]. </td></tr>
+    <tr><td class="paramname">pausePin</td><td>Pin number of digital input to invoke pausing. </td></tr>
+    <tr><td class="paramname">stopWhen</td><td>Pin value when the task should pause. </td></tr>
+    <tr><td class="paramname">pauseMs</td><td>Checking cycle for the task to restart in [ms]. </td></tr>
   </table>
   </dd>
 </dl>
@@ -153,7 +156,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 1 2020 11:14:29 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 17 2020 12:30:22 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

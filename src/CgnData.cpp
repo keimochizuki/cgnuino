@@ -9,19 +9,19 @@
 
 /*!
  * @brief Constructor.
- * @param s Separator for serial outputs (by default @\t).
+ * @param separatingChar Separator for serial outputs (by default @\t).
 **/
-CgnData::CgnData(char s) {
-  sep = s;
+CgnData::CgnData(char separatingChar) {
+  sep = separatingChar;
   data = "";
 }
 
 /*!
  * @brief Appends a new text to output buffer.
- * @param s Appended text.
+ * @param newData Appended text data.
 **/
-void CgnData::append(String s) {
-  data = data + sep + s;
+void CgnData::append(String newData) {
+  data = data + sep + newData;
 }
 
 /*!
