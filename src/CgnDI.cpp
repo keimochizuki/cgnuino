@@ -10,18 +10,19 @@
 
 /*!
  * @brief Constructor.
- * @param p First pin number for digital-in pins.
- * @param s Number of digital-in pins.
- * @param o First pin number for relaied output pins.
- * @param d Delay intervened after a bit change in [ms].
+ * @param firstPin First pin number for digital-in pins.
+ * @param numberOfInputs Number of digital inputs in use.
+ * @param relaidPin First pin number for relaied output pins if needed.
+ * @param debounceMs Delay intervened after a bit change in [ms].
 **/
-CgnDI::CgnDI(byte p, byte s, byte o, byte d) {
-  first = p;
-  n = s;
-  relay = o;
-  relaid = (o != NULL);
-  r = d;
+CgnDI::CgnDI(byte firstPin, byte numberOfInputs, byte relaidPin, byte debounceMs) {
+  first = firstPin;
+  n = numberOfInputs;
+  relay = relaidPin;
+  relaid = (relay != NULL);
+  r = debounceMs;
   last = millis();
+
   for (int i = 0; i < N_CGNDI; i++) {
     rest[i] = 0;
     if (i < n) {
@@ -51,13 +52,13 @@ void CgnDI::update() {
   last = millis();
 
   for (int i = 0; i < n; i++) {
+    pre[i] = cur[i];
     if (rest[i] > past) {
       rest[i] -= past;
       continue;
 
     } else {
       rest[i] = 0;
-      pre[i] = cur[i];
       cur[i] = digitalRead(first + i) ? false : true;
 
       if (cur[i] != pre[i]) {
@@ -72,7 +73,7 @@ void CgnDI::update() {
 
 /*!
  * @brief Checks whether @a i-th DI pin is on (active).
- * @param i Index of DI pin in question.
+ * @param i Index of input you want to check.
 **/
 bool CgnDI::on(byte i) {
   return cur[i];
@@ -80,7 +81,7 @@ bool CgnDI::on(byte i) {
 
 /*!
  * @brief Checks whether @a i-th DI pin is off (inactive).
- * @param i Index of DI pin in question.
+ * @param i Index of input you want to check.
 **/
 bool CgnDI::off(byte i) {
   return !cur[i];
@@ -88,7 +89,7 @@ bool CgnDI::off(byte i) {
 
 /*!
  * @brief Checks whether @a i-th DI pin was turned on in current loop.
- * @param i Index of DI pin in question.
+ * @param i Index of input you want to check.
 **/
 bool CgnDI::turnon(byte i) {
   return cur[i] && !pre[i];
@@ -96,7 +97,7 @@ bool CgnDI::turnon(byte i) {
 
 /*!
  * @brief Checks whether @a i-th DI pin was turned off in current loop.
- * @param i Index of DI pin in question.
+ * @param i Index of input you want to check.
 **/
 bool CgnDI::turnoff(byte i) {
   return !cur[i] && pre[i];
@@ -104,7 +105,7 @@ bool CgnDI::turnoff(byte i) {
 
 /*!
  * @brief Checks whether @a i-th DI pin was changed from previous loop.
- * @param i Index of DI pin in question.
+ * @param i Index of input you want to check.
 **/
 bool CgnDI::change(byte i) {
   return cur[i] != pre[i];
@@ -112,7 +113,7 @@ bool CgnDI::change(byte i) {
 
 /*!
  * @brief Checks whether @a i-th DI pin kept unchanged from previous loop.
- * @param i Index of DI pin in question.
+ * @param i Index of input you want to check.
 **/
 bool CgnDI::keep(byte i) {
   return cur[i] == pre[i];

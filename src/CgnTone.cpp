@@ -9,10 +9,10 @@
 
 /*!
  * @brief Consructor.
- * @param p Pin number for digital-out to a piezo buzzer.
+ * @param tonePin Pin number for digital-out to a piezo buzzer.
 **/
-CgnTone::CgnTone(byte p) {
-  pin = p;
+CgnTone::CgnTone(byte tonePin) {
+  pin = tonePin;
   limit = ULONG_MAX;
 
   pinMode(pin, OUTPUT);
@@ -33,11 +33,11 @@ void CgnTone::update() {
 
 /*!
  * @brief Starts a tone out from a pin for determined time length.
- * @param l Time length of output in [ms].
- * @param f Frequency of tone output in [Hz].
+ * @param toneMs Time length of output in [ms].
+ * @param toneFreq Frequency of tone output in [Hz].
 **/
-void CgnTone::out(uint32_t l, uint16_t f) {
-  tone(pin, f);
-  limit = millis() + l;
+void CgnTone::out(uint32_t toneMs, uint16_t toneFreq) {
+  tone(pin, toneFreq);
+  limit = millis() + toneMs;
 }
 

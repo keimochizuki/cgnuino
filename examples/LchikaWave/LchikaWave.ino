@@ -9,11 +9,12 @@ void setup() {
 
 void loop() {
   led.update();
-  if (sw.get() > 1000) {
+  if (sw.get() > 2000) {
     sw.lap();
-    for (int i = 0; i < 4; i++) {
-      led.out(i, 200 * (i + 1));
-    }
+    led.out(0, 500);
+    led.out(1, 600);
+    led.out(2, 1000);
+    led.out(3, 1500);
   }
   delay(1);
 }

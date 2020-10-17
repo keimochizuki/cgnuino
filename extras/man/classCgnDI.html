@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
 <p>In constructing behavioral tasks, this function can be used to monitor any arbitrary electrical parts or instruments that put out information about their state as a 5V/0V digital (binary) signal. One of the most common cases is to record participant's action as button press, lever manipulation and so on. For example, if you connect a mechanical switch with either pull-up or pull-down resistor, you can monitor the button's push/release state as <code>HIGH</code> or <code>LOW</code> (depending on whether you pulled up or down the pin). Especially in digital inputs on Arduino boards, there is a convenient pin mode called <code>INPUT_PULLUP</code>. This feature sets the designated pin as input mode, and internally connects it to high votage with inbuilt registor about 10k ohm (i.e., pulls up the designated pin). Thus, by inserting a simple single-pole switch to this pin and GND, you can record the state of the switch as <code>HIGH</code> (released) or <code>LOW</code> (pressed) without any external pull-up mechanism.</p>
 <div class="fragment"><div class="line">byte pin = 13;</div><div class="line"><span class="keywordtype">bool</span> isReleased;</div><div class="line">pinMode(pin, INPUT_PULLUP);</div><div class="line">isReleased = digitalRead(pin);</div></div><!-- fragment --><p>However, in behavioral tasks, there are often times that you want to know whether the button is pressed and released at this moment (in this loop). In other words, you may want to detect, not only the button's current state, but also the timing of changes of the button press/release. In this case, you need to buffer the previous value from the pin, and compare it with the current pin state read by <code>digitalRead</code> function. Furthermore, there can be multiple of such input like home, center, left and right buttons, etc... These conditions force you to deal with an array of input buffers and repeated comparison processes every time you want to refer to the current, latest values of these inputs.</p>
 <p><a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class offers an easy way for such input monitoring in behavioral tasks. At construction, <a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class prepares multiple pins as pulled-up digital inputs using <code>INPUT_PULLUP</code>. Maximal number of pins for one instance of this class is determined by a constant <code>N_CGNDI</code>. Every time <code>update</code> is called, <a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class read the current values of the input pins. These values can be checked by <code>on</code> and <code>off</code> methods, which returns <code>true</code> when the button is pressed (i.e., the pin is connected to GND by the switch), and <code>false</code> when it is not pressed (i.e., the pin is connected to 5V through pull-up registor). In other words, original negative logic values (<code>LOW/HIGH</code> for switch's on/off, respectively) read by <code>digitalRead</code> function are converted to <code>true/false</code> boolean with a translation to a positive logic. Also <a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class remembers the previous values of the pins in a buffer. Thus you can check if the value was changed at the time of last <code>update</code> call by just performing <code>turnon</code> and <code>turnoff</code> methods. Because of this operation mechanism, <code>update</code> method is intended to be performed once (and normally only once) in every loop which is repeated in reasonablly quick cycles (usually a few milliseconds will be enough, but it depends on situation of each experiment).</p>
-<p><a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class relays the current values of digital inputs to other set of digital-out pins, when dedicated pin numbers for this facility is designated. This can be used to relay the buttons' on/off state to other measurement instruments. <a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class also has a so called debounce mechanism. This is a (in the case of cgnuino library) software mechanism that conquer the short, unstable input fluctuation at the very moment of switch opening and closing. High flequent alteration of high/low voltage, called chattering or ripple, is problematic since Arduino may misregard it as multiple numbers of (really really) quick turing on and off of the switch. To prevent it, <a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class omits input to a digital-in pin right after once a change occured (by default a few milliseconds), discarding possible chattering input during this period. Although absolute amount of time this silencing takes place is universal to all the pins for a given <a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> instance, actual omission is performed separately for each pin. In other words, if a change has occured to a given pin, succeeding input to that same pin is omitted for a short period, but inputs to other pins are regularly received and accessible. </p>
+<p><a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class relays the current values of digital inputs to other set of digital-out pins, when dedicated pin numbers for this facility is designated. This can be used to relay the buttons' on/off state to other measurement instruments. <a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class also has a so called debounce mechanism. This is a (in the case of cgnuino library) software mechanism that conquer the short, unstable input fluctuation at the very moment of switch opening and closing. High flequent alteration of high/low voltage, called chattering or ripple, is problematic since Arduino may misregard it as multiple numbers of (really really) quick turing on and off of the switch. To prevent it, <a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class omits input from a digital-in pin right after once a change occured (by default a few milliseconds), discarding possible chattering input during this period. Although absolute amount of time this silencing takes place is universal to all the pins for a given <a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> instance, actual omission is performed separately for each pin. In other words, if a change has occured to a given pin, succeeding input from that same pin is omitted for a short period, but inputs from other pins are regularly received and accessible. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="DI_8ino-example.html#_a0">DI.ino</a>, and <a class="el" href="SeqResp_8ino-example.html#_a1">SeqResp.ino</a>.</dd>
 </dl></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a65c74487fcfa1f0073476ac6d1e7fc24"></a>
@@ -136,25 +136,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">CgnDI::CgnDI </td>
           <td>(</td>
           <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramname"><em>firstPin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>s</em> = <code>1</code>, </td>
+          <td class="paramname"><em>numberOfInputs</em> = <code>1</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>o</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>relaidPin</em> = <code>NULL</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>d</em> = <code>2</code>&#160;</td>
+          <td class="paramname"><em>debounceMs</em> = <code>2</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -165,10 +165,10 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>First pin number for digital-in pins. </td></tr>
-    <tr><td class="paramname">s</td><td>Number of digital-in pins. </td></tr>
-    <tr><td class="paramname">o</td><td>First pin number for relaied output pins. </td></tr>
-    <tr><td class="paramname">d</td><td>Delay intervened after a bit change in [ms]. </td></tr>
+    <tr><td class="paramname">firstPin</td><td>First pin number for digital-in pins. </td></tr>
+    <tr><td class="paramname">numberOfInputs</td><td>Number of digital inputs in use. </td></tr>
+    <tr><td class="paramname">relaidPin</td><td>First pin number for relaied output pins if needed. </td></tr>
+    <tr><td class="paramname">debounceMs</td><td>Delay intervened after a bit change in [ms]. </td></tr>
   </table>
   </dd>
 </dl>
@@ -191,7 +191,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>Index of DI pin in question. </td></tr>
+    <tr><td class="paramname">i</td><td>Index of input you want to check. </td></tr>
   </table>
   </dd>
 </dl>
@@ -213,7 +213,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>Index of DI pin in question. </td></tr>
+    <tr><td class="paramname">i</td><td>Index of input you want to check. </td></tr>
   </table>
   </dd>
 </dl>
@@ -235,7 +235,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>Index of DI pin in question. </td></tr>
+    <tr><td class="paramname">i</td><td>Index of input you want to check. </td></tr>
   </table>
   </dd>
 </dl>
@@ -257,7 +257,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>Index of DI pin in question. </td></tr>
+    <tr><td class="paramname">i</td><td>Index of input you want to check. </td></tr>
   </table>
   </dd>
 </dl>
@@ -279,7 +279,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>Index of DI pin in question. </td></tr>
+    <tr><td class="paramname">i</td><td>Index of input you want to check. </td></tr>
   </table>
   </dd>
 </dl>
@@ -302,7 +302,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>Index of DI pin in question. </td></tr>
+    <tr><td class="paramname">i</td><td>Index of input you want to check. </td></tr>
   </table>
   </dd>
 </dl>
@@ -334,7 +334,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 1 2020 11:14:29 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 17 2020 12:30:22 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

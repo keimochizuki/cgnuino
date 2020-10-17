@@ -1,6 +1,5 @@
 #include "cgnuino.h"
 
-CgnStopwatch sw;
 CgnPeriod period;
 
 void setup() {
@@ -10,17 +9,20 @@ void setup() {
 
 void loop() {
   if (period.is("rest")) {
-    period.set("resp", 1234);
-    Serial.println("resp start");
-    sw.lap();
+    period.set("pretrial", 500);
+    Serial.println("pre-trial");
 
-  } else if (period.is("resp") && period.expire()) {
+  } else if (period.is("pretrial") && period.expire()) {
+    period.set("trial", 2000);
+    Serial.println("trial progressing");
+
+  } else if (period.is("trial") && period.expire()) {
     period.set("iti", 1000);
-    Serial.print("resp expire: ");
-    Serial.println(sw.get());
-    
+    Serial.println("inter-trial interval");
+
   } else if (period.is("iti") && period.expire()) {
     period.set("rest", 0);
+    Serial.println("");
 
   }
   delay(1);

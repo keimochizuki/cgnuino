@@ -1,6 +1,6 @@
 #include "cgnuino.h"
 
-CgnPause pause = CgnPause(13);
+CgnPause pause = CgnPause(2);
 byte n = 0, inc = 1;
 
 void setup() {
@@ -24,6 +24,6 @@ void loop() {
     inc = 1;
   }
 
-  delay(250);
+  delay(100);
 }
 

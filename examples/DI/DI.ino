@@ -1,6 +1,6 @@
 #include "cgnuino.h"
 
-CgnDI button = CgnDI(13);
+CgnDI button = CgnDI(2);
 
 void setup() {
   Serial.begin(115200);
@@ -9,9 +9,9 @@ void setup() {
 void loop() {
   button.update();
 
-  if (button.turnon(0)) {
+  if (button.turnon()) {
     Serial.println("Pushed");
-  } else if (button.turnoff(0)) {
+  } else if (button.turnoff()) {
     Serial.println("Released");
   }
 

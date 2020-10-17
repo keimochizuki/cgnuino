@@ -1,6 +1,6 @@
 #include "cgnuino.h"
 
-CgnStrobe strobe = CgnStrobe(4);
+CgnStrobe strobe = CgnStrobe(4, 50000);
 
 void setup() {
   Serial.begin(115200);
@@ -13,7 +13,7 @@ void loop() {
   Serial.print(t);
   Serial.println(" ms");
 
-  delay(10000);
+  delay(5000);
 }
 
 

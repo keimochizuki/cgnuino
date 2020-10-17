@@ -10,18 +10,19 @@
 
 /*!
  * @brief Constructor.
- * @param b Initial value of the logged boolean.
- * @param o First pin number for relaied output pins.
- * @param d Delay intervened after a bit change in [ms].
+ * @param initBool Initial value of the logged boolean.
+ * @param relaidPin Pin number for relaied output pin.
+ * @param debounceMs Delay intervened after a bit change in [ms].
 **/
-CgnLogger::CgnLogger(bool b, byte o, byte d) {
-  cur = b;
+CgnLogger::CgnLogger(bool initBool, byte relaidPin, byte debounceMs) {
+  cur = initBool;
   pre = cur;
-  relay = o;
+  relay = relaidPin;
   relaid = (relay != NULL);
-  r = d;
+  r = debounceMs;
   last = millis();
   rest = 0;
+
   if (relaid) {
     pinMode(relay, OUTPUT);
     digitalWrite(relay, cur ? HIGH : LOW);
@@ -30,21 +31,22 @@ CgnLogger::CgnLogger(bool b, byte o, byte d) {
 
 /*!
  * @brief Updates boolean buffer by current value.
+ * @param newBool New value of the logged boolean.
  * @note For a normal usage, this method is intended to be called
  *       once, and only once, inside \c loop function.
 **/
-void CgnLogger::update(bool b) {
+void CgnLogger::update(bool newBool) {
   int past;
   past = millis() - last;
   last = millis();
 
+  pre = cur;
   if (rest > past) {
     rest -= past;
 
   } else {
     rest = 0;
-    pre = cur;
-    cur = b;
+    cur = newBool;
 
     if (cur != pre) {
       rest = r;

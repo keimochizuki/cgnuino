@@ -11,13 +11,20 @@ void setup() {
 
 void loop() {
   n += 1;
-  if (n >= 100) {
-    Serial.println(val.lap());
+  if (n >= 20) {
+    Serial.print("average: ");
+    Serial.print(val.lap());
+    Serial.print(", max: ");
+    Serial.print(val.getMax());
+    Serial.print(", min: ");
+    Serial.print(val.getMin());
+    Serial.println(" [ms/loop]");
+
     val.start();
     n = 0;
   } else {
     val.lap();
   }
-  delay(random(1, 20));
+  delay(random(1, 100));
 }
 

@@ -116,7 +116,9 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <tr class="separator:aa16b89c7cb5fc58606a899ab99b6115b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl><dt><b>Examples: </b></dt><dd><a class="el" href="Valtiel_8ino-example.html#_a0">Valtiel.ino</a>.</dd>
+<div class="textblock"><p>When prototyping your experiment, there are often times that you want to check whether your task is runnning in a reasonably good time resolution. Since some of the classes in cgnuino library is dependent on the frequency of <code>loop</code> function, it is important to correctly know how quick your <code>loop</code> is executed. <a class="el" href="classCgnValtiel.html" title="Monitors average length of executed loops on Arduino. ">CgnValtiel</a> class offers an easy way for this. After you <code>start</code> the monitoring, call <code>lap</code> method once (and only once) in every <code>loop</code> call. (For example, put <code>lap</code> on the very beginning of your <code>loop</code> function.) <a class="el" href="classCgnValtiel.html" title="Monitors average length of executed loops on Arduino. ">CgnValtiel</a> class counts the number of laps and the elapsed time from <code>start</code>, and tell you the average length of your <code>loop</code> (in millisecond). You can also check the maximal and minimal length of your <code>loop</code> by <code>getMax</code> and <code>getMin</code> method. These can be useful since there is a case that a loop gets unexpectedly overlong or overshort in only a realy realy small probability, thus leaving the average length superficially unaffected.</p>
+<p><a class="el" href="classCgnValtiel.html" title="Monitors average length of executed loops on Arduino. ">CgnValtiel</a> class is named for an imaginary creature which appears on a video game series "Silent Hill". Despite its dreadful appearance, it is actually not a monster but a servant of God of indigenous religion in Silent Hill (thus being a position of an angel). It governs metempsychosis or reincarnation, watching the tide of fates of living things. During a gameplay, it often appears with a revolving valve that symbolizes its religious role in reincarnation. In a deep respect for the Silent Hill series, <a class="el" href="classCgnValtiel.html" title="Monitors average length of executed loops on Arduino. ">CgnValtiel</a> class was named for, for its role of monitoring the cycle of your experimental loops. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Valtiel_8ino-example.html#_a0">Valtiel.ino</a>.</dd>
 </dl></div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a5ba87488d22cd7862606a0f9085b0fb1"></a>
 <div class="memitem">
@@ -142,7 +144,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 1 2020 11:14:29 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 17 2020 12:30:22 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

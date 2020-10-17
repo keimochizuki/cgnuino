@@ -18,24 +18,24 @@ CgnPeriod::CgnPeriod() {
 
 /*!
  * @brief Sets current task period and its time limitation.
- * @param s Name of the current task period.
- * @param l Maximum length of current task period in [ms].
+ * @param newPeriod Name of the new task period.
+ * @param lengthMs Maximum length of current task period in [ms].
 **/
-void CgnPeriod::set(String s, uint32_t l) {
-  period = s;
-  if (l == 0) {
+void CgnPeriod::set(String newPeriod, uint32_t lengthMs) {
+  period = newPeriod;
+  if (lengthMs == 0) {
     limit = ULONG_MAX;
   } else {
-    limit = millis() + l;
+    limit = millis() + lengthMs;
   }
 }
 
 /*!
  * @brief Checks whether the current task period is \a s.
- * @param s Name of the candidate task period.
+ * @param periodName Name of the candidate task period.
 **/
-bool CgnPeriod::is(String s) {
-  return period == s;
+bool CgnPeriod::is(String periodName) {
+  return period == periodName;
 }
 
 /*!

@@ -10,12 +10,12 @@
 
 /*!
  * @brief Constructor.
- * @param e EOL for serial inputs (by default @\n).
+ * @param endOfLine EOL for serial inputs (by default @\n).
 **/
-CgnControl::CgnControl(char e) {
+CgnControl::CgnControl(char endOfLine) {
   c = 0;
   v = "";
-  eol = e;
+  eol = endOfLine;
 }
 
 /*!

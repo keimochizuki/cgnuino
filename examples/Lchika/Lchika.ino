@@ -1,7 +1,7 @@
 #include "cgnuino.h"
 
 CgnStopwatch sw;
-CgnDO led = CgnDO(13, 1);
+CgnDO led = CgnDO(13);
 
 void setup() {
   Serial.begin(115200);

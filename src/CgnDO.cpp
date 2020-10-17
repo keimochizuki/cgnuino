@@ -11,12 +11,13 @@
 
 /*!
  * @brief Consructor.
- * @param p First pin number for digital-out pins.
- * @param s Number of digital-out pins.
+ * @param firstPin First pin number for digital-out pins.
+ * @param numberOfOutputs Number of digital outputs in use.
 **/
-CgnDO::CgnDO(byte p, byte s) {
-  first = p;
-  n = s;
+CgnDO::CgnDO(byte firstPin, byte numberOfOutputs) {
+  first = firstPin;
+  n = numberOfOutputs;
+
   for (int i = 0; i < N_CGNDO; i++) {
     limit[i] = ULONG_MAX;
     if (i < n) {
@@ -43,11 +44,11 @@ void CgnDO::update() {
 
 /*!
  * @brief Starts putting out from a pin for determined time length.
- * @param i Index of DO pin to emit digital-out.
- * @param l Time length of output in [ms].
+ * @param i Index of DO pin to emit digital output.
+ * @param outputMs Time length of output in [ms].
 **/
-void CgnDO::out(byte i, uint32_t l) {
+void CgnDO::out(byte i, uint32_t outputMs) {
   digitalWrite(first + i, HIGH);
-  limit[i] = millis() + l;
+  limit[i] = millis() + outputMs;
 }
 
