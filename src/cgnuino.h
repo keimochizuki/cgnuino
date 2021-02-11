@@ -580,16 +580,16 @@ class CgnStopwatch {
  *
  * | + | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
  * |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
- * | 3x|   |   |   | ! | @"| @#| @$| @%| @&| ' |
- * | 4x| ( | ) | * | + | , | - | @.| / | 0 | 1 |
- * | 5x| 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | : | ; |
- * | 6x| < | = | > | ? | @@| A | B | C | D | E |
- * | 7x| F | G | H | I | J | K | L | M | N | O |
- * | 8x| P | Q | R | S | T | U | V | W | X | Y |
- * | 9x| Z | [ | \ | ] | ^ | _ | ` | a | b | c |
- * |10x| d | e | f | g | h | i | j | k | l | m |
- * |11x| n | o | p | q | r | s | t | u | v | w |
- * |12x| x | y | z | { |   | } | ~ |   |   |   |
+ * | 30|   |   |   | ! | @"| @#| @$| @%| @&| ' |
+ * | 40| ( | ) | * | + | , | - | @.| / | 0 | 1 |
+ * | 50| 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | : | ; |
+ * | 60| < | = | > | ? | @@| A | B | C | D | E |
+ * | 70| F | G | H | I | J | K | L | M | N | O |
+ * | 80| P | Q | R | S | T | U | V | W | X | Y |
+ * | 90| Z | [ | \ | ] | ^ | _ | ` | a | b | c |
+ * |100| d | e | f | g | h | i | j | k | l | m |
+ * |110| n | o | p | q | r | s | t | u | v | w |
+ * |120| x | y | z | { |   | } | ~ |   |   |   |
  *
  * Each row corresponds tens place and column ones place.
  * As shown in the table, standard English characters are
@@ -622,7 +622,7 @@ class CgnStopwatch {
 **/
 class CgnStrobe {
   public:
-    CgnStrobe(byte, uint32_t = 5);
+    CgnStrobe(byte, uint32_t = 5, bool = false);
     uint32_t out(String);
 
   private:
@@ -630,6 +630,7 @@ class CgnStrobe {
     byte first;
 	uint32_t len;
     bool us;
+    bool term;
 };
 
 /*!

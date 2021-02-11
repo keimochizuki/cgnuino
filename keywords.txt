@@ -31,8 +31,10 @@ out	KEYWORD2
 append	KEYWORD2
 clear	KEYWORD2
 get	KEYWORD2
-get_code	KEYWORD2
-get_value	KEYWORD2
+getCode	KEYWORD2
+getValue	KEYWORD2
+getMax	KEYWORD2
+getMin	KEYWORD2
 set	KEYWORD2
 is	KEYWORD2
 expire	KEYWORD2

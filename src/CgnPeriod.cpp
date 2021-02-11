@@ -23,7 +23,7 @@ CgnPeriod::CgnPeriod() {
 **/
 void CgnPeriod::set(String newPeriod, uint32_t lengthMs) {
   period = newPeriod;
-  if (lengthMs == 0) {
+  if (lengthMs > (ULONG_MAX - millis())) {
     limit = ULONG_MAX;
   } else {
     limit = millis() + lengthMs;
