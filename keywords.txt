@@ -5,6 +5,7 @@
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
+CgnAO	KEYWORD1
 CgnControl	KEYWORD1
 CgnDI	KEYWORD1
 CgnDO	KEYWORD1
@@ -14,6 +15,8 @@ CgnPause	KEYWORD1
 CgnPeriod	KEYWORD1
 CgnStopwatch	KEYWORD1
 CgnStrobe	KEYWORD1
+CgnTimerAO	KEYWORD1
+CgnTimerDO	KEYWORD1
 CgnTone	KEYWORD1
 CgnValtiel	KEYWORD1
 
