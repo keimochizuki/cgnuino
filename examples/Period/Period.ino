@@ -21,11 +21,10 @@ void loop() {
     Serial.println("inter-trial interval");
 
   } else if (period.is("iti") && period.expire()) {
-    period.set("rest", 0);
+    period.set("rest");
     Serial.println("");
 
   }
   delay(1);
 }
-
 

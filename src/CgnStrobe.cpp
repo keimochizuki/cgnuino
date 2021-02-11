@@ -12,9 +12,11 @@
  * @brief Constructor.
  * @param firstPin First pin number for digital-out pins.
  * @param strobeUs Length of each character in [us] (\b MICRO-seconds).
+ * @param sendTerminator Whether to send terminator character (\c 0x00) at the end.
 **/
-CgnStrobe::CgnStrobe(byte firstPin, uint32_t strobeUs) {
+CgnStrobe::CgnStrobe(byte firstPin, uint32_t strobeUs, bool sendTerminator) {
   first = firstPin;
+  term = sendTerminator;
   if (strobeUs > 2000) {
     len = strobeUs / 1000;
     us = false;
@@ -51,13 +53,17 @@ uint32_t CgnStrobe::out(String txt) {
     digitalWrite(first + 8, HIGH);
     //Serial.println("");
     wait();
-
     digitalWrite(first + 8, LOW);
     wait();
   }
 
   for (int j = 7; j >= 0; j--) {
     digitalWrite(first + j, LOW);
+  }
+  if (term) {
+    digitalWrite(first + 8, HIGH);
+    wait();
+    digitalWrite(first + 8, LOW);
   }
 
   return millis() - time;

@@ -8,7 +8,7 @@ var searchData=
   ['cgnpause',['CgnPause',['../classCgnPause.html#aee3b049e6cb60966c2c83ff1778595ff',1,'CgnPause']]],
   ['cgnperiod',['CgnPeriod',['../classCgnPeriod.html#a403c5c1c8e3b3212ec29986b448c35c2',1,'CgnPeriod']]],
   ['cgnstopwatch',['CgnStopwatch',['../classCgnStopwatch.html#a114446066d6bfdf30e90081c8791eadf',1,'CgnStopwatch']]],
-  ['cgnstrobe',['CgnStrobe',['../classCgnStrobe.html#a2b529bfaaa9bec4011e46cf9899e99eb',1,'CgnStrobe']]],
+  ['cgnstrobe',['CgnStrobe',['../classCgnStrobe.html#ab665a0aaf4b930e735fecf38cf5858bc',1,'CgnStrobe']]],
   ['cgntone',['CgnTone',['../classCgnTone.html#af07c4b98fd2f50b9c5bddfb04bfa658a',1,'CgnTone']]],
   ['cgnvaltiel',['CgnValtiel',['../classCgnValtiel.html#a3aa25cdded9cf91e0c35aa5b7637ffd7',1,'CgnValtiel']]],
   ['change',['change',['../classCgnDI.html#a21994237460bd0be25a523173e2ba165',1,'CgnDI::change()'],['../classCgnLogger.html#a16e3dfb62d1dc8b1cdebfccb37111681',1,'CgnLogger::change()']]],
