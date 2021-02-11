@@ -20,7 +20,7 @@ CgnAO::CgnAO(byte aoPin) {
 }
 
 /*!
- * @brief Stop the analog output when finished determined time length of output.
+ * @brief Stops the analog output when finished determined time length of output.
  * @note For a normal usage, this method is intended to be called
  *       once inside \c loop function.
 **/
