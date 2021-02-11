@@ -99,9 +99,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#a403c5c1c8e3b3212ec29986b448c35c2">CgnPeriod</a> ()</td></tr>
 <tr class="memdesc:a403c5c1c8e3b3212ec29986b448c35c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
 <tr class="separator:a403c5c1c8e3b3212ec29986b448c35c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5d5882925c472e5a6e9f025a6b417f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#ae5d5882925c472e5a6e9f025a6b417f8">set</a> (String, uint32_t=0)</td></tr>
-<tr class="memdesc:ae5d5882925c472e5a6e9f025a6b417f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets current task period and its time limitation.  <a href="#ae5d5882925c472e5a6e9f025a6b417f8">More...</a><br /></td></tr>
-<tr class="separator:ae5d5882925c472e5a6e9f025a6b417f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73c3ce3f501221a78ee64078411524b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#a73c3ce3f501221a78ee64078411524b4">set</a> (String, uint32_t=-1)</td></tr>
+<tr class="memdesc:a73c3ce3f501221a78ee64078411524b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets current task period and its time limitation.  <a href="#a73c3ce3f501221a78ee64078411524b4">More...</a><br /></td></tr>
+<tr class="separator:a73c3ce3f501221a78ee64078411524b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a314dc02f428d3a59c7f3dbae3d88a9d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#a314dc02f428d3a59c7f3dbae3d88a9d7">is</a> (String)</td></tr>
 <tr class="memdesc:a314dc02f428d3a59c7f3dbae3d88a9d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the current task period is <em>s</em>.  <a href="#a314dc02f428d3a59c7f3dbae3d88a9d7">More...</a><br /></td></tr>
 <tr class="separator:a314dc02f428d3a59c7f3dbae3d88a9d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,7 +120,8 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A trial in a behavioral task is composed of multiple task periods (also called as epochs), which are temporal intervals within which a set of task events or desired participant's actions are taken place. For example, an LED flash is provided in the cue period, and the participant should press a button as soon as possible in the subsequent response period. Some task periods have time limitation, while others can last forever until predetermined conditions are fulfilled.</p>
-<p>To manage the transition of numbers of task periods, <a class="el" href="classCgnPeriod.html" title="Remembers current task period and its time constraint. ">CgnPeriod</a> class offers a handy cutoff to you. It simply remembers the current task period designated by <code>set</code> method. By using <a class="el" href="classCgnPeriod.html" title="Remembers current task period and its time constraint. ">CgnPeriod</a> class, conditional branching in your main code will become more readable. If you designate time length of the period on calling <code>set</code> method, <a class="el" href="classCgnPeriod.html" title="Remembers current task period and its time constraint. ">CgnPeriod</a> class also maintain that information so that you can monitor the expiration of the predetermined time limit using <code>expire</code> method. </p>
+<p>To manage the transition of numbers of task periods, <a class="el" href="classCgnPeriod.html" title="Remembers current task period and its time constraint. ">CgnPeriod</a> class offers a handy cutoff to you. It simply remembers the current task period designated by <code>set</code> method. By using <a class="el" href="classCgnPeriod.html" title="Remembers current task period and its time constraint. ">CgnPeriod</a> class, conditional branching in your main code will become more readable. If you designate time length of the period on calling <code>set</code> method, <a class="el" href="classCgnPeriod.html" title="Remembers current task period and its time constraint. ">CgnPeriod</a> class also maintain that information so that you can monitor the expiration of the predetermined time limit using <code>expire</code> method.</p>
+<p>There can be an occasion that you want to unlimitedly wait for some event to occur during a given task period (e.g., a button press during an inter-trial interval before beginning the next trial). In this case, you can set the length of the period to <code>-1</code>. Since the length of the period is defined as an unsigned long, setting it to <code>-1</code> cycles its value to the maximal value of unsigned long (i.e., 4294967295 ms). This corresponds to approximately 50 days, virtually meaning that the period lasts forever without time limitation. (Actually this is the default behavior of the <code>set</code> method when you omit designing the second argument.) </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="Period_8ino-example.html#_a0">Period.ino</a>.</dd>
 </dl></div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a314dc02f428d3a59c7f3dbae3d88a9d7"></a>
@@ -146,7 +147,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </dl>
 </div>
 </div>
-<a class="anchor" id="ae5d5882925c472e5a6e9f025a6b417f8"></a>
+<a class="anchor" id="a73c3ce3f501221a78ee64078411524b4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -160,7 +161,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>lengthMs</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>lengthMs</em> = <code>-1</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -187,7 +188,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 4 2020 18:19:23 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 11 2021 13:08:11 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

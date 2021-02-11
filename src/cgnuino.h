@@ -130,6 +130,35 @@ class CgnControl {
 };
 
 /*!
+ * @brief Emits asynchroneous analog-out in a similar way to CgnDO class.
+ *
+ * In order to asynchroneously emit digital outputs,
+ * cgnuino has CgnDO class dedicated to that purpose.
+ * The same demand for an analog output instead of digital outputs
+ * can be met by CgnAO class.
+ * The usage is almost identical to CgnDO class except that
+ * CgnAO class only use one out pin,
+ * instead of holding multiple analog-out pins.
+ * This is because GPIO pins with pulse width modulation functionality
+ * (virtual analog-out function in Arduino)
+ * are limited and implemented intermittently on the board,
+ * making the perservation of multiple analog-out pins impossible.
+ * Start analog output of a given length and strength by \c out method.
+ * Then repeatedly call \c update method so that it can terminate
+ * the output once a designated time length has passed.
+**/
+class CgnAO {
+  public:
+    CgnAO(byte);
+    void update();
+    void out(uint32_t, byte = 255);
+
+  private:
+    byte pin;
+    uint32_t limit;
+};
+
+/*!
  * @brief Offers convenient digital-in buffering.
  *
  * Digital-in pins make Arduino boards detect signal changes
@@ -494,11 +523,24 @@ class CgnPause {
  * CgnPeriod class also maintain that information
  * so that you can monitor the expiration of the predetermined time limit
  * using \c expire method.
+ *
+ * There can be an occasion that you want to unlimitedly wait for
+ * some event to occur during a given task period
+ * (e.g., a button press during an inter-trial interval
+ * before beginning the next trial).
+ * In this case, you can set the length of the period to \c -1.
+ * Since the length of the period is defined as an unsigned long,
+ * setting it to \c -1 cycles its value to the maximal value
+ * of unsigned long (i.e., 4294967295 ms).
+ * This corresponds to approximately 50 days,
+ * virtually meaning that the period lasts forever without time limitation.
+ * (Actually this is the default behavior of the \c set method
+ * when you omit designing the second argument.)
 **/
 class CgnPeriod {
   public:
     CgnPeriod();
-    void set(String, uint32_t = 0);
+    void set(String, uint32_t = -1);
     bool is(String);
     bool expire();
     String get();
@@ -643,7 +685,7 @@ class CgnStrobe {
  * The usage is almost identical to CgnDO class except that
  * CgnTone class only use one out pin,
  * instead of holding multiple digital-out pins.
- * (Usually multiple tone outputs are not required
+ * (Normally multiple tone outputs are not required
  * in standard behavioral tasks.)
  * Start beeping a piezo buzzer in a required frequency
  * by \c out method.
