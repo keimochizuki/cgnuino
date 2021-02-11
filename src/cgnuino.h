@@ -676,6 +676,94 @@ class CgnStrobe {
 };
 
 /*!
+ * @brief Changes a analog output after a given time length has passed.
+ *
+ * Asynchroneous analog output control is
+ * easily carried out by cgnuino's CgnAO class.
+ * However, there may be a case that you occasionally
+ * want to directly control some analog-out pin as
+ * Arduino's default analogWrite function,
+ * but with some time offset.
+ * CgnTimerAO class offers such low-level pin control
+ * for an analog-out pin.
+ * Once set a pin number, time offset,
+ * and a value to change to (ranging from 0 to 255),
+ * repeatedly call \c update method so that
+ * CgnTimerAO class can change
+ * analog output value after a designated time length has passed.
+ *
+ * Note that unlike CgnAO class, CgnTimerAO class does not
+ * stick to a particular pin, nor change the pin mode
+ * on its construction.
+ * You need to designate which pin to set the timer
+ * every time you call \c set method.
+ * This is for the convenience that you can use one instance of
+ * CgnTimerAO class for multiple purpose,
+ * watching out different analog-out pins here and there.
+ * However, this class can monitor only one pin at a time.
+ * So if you want multiple timers to control multiple analog-out pins
+ * with different time offsets, you need to create two or more
+ * instances of CgnTimerAO class.
+**/
+class CgnTimerAO {
+  public:
+    CgnTimerAO();
+    void update();
+    void set(byte, uint32_t, byte);
+    byte get();
+    uint32_t until();
+
+  private:
+    byte pin;
+    uint32_t limit;
+    byte value;
+};
+
+/*!
+ * @brief Changes a digital output after a given time length has passed.
+ *
+ * Asynchroneous digital output control is
+ * easily carried out by cgnuino's CgnDO class.
+ * However, there may be a case that you occasionally
+ * want to directly control some digital-out pin as
+ * Arduino's default digitalWrite function,
+ * but with some time offset.
+ * CgnTimerDO class offers such low-level pin control
+ * for a digital-out pin.
+ * Once set a pin number, time offset,
+ * and a value to change to (\c HIGH/LOW),
+ * repeatedly call \c update method so that
+ * CgnTimerDO class can change
+ * digital output value after a designated time length has passed.
+ *
+ * Note that unlike CgnDO class, CgnTimerDO class does not
+ * stick to a particular pins, nor change the pin modes
+ * on its construction.
+ * You need to designate which pin to set the timer
+ * every time you call \c set method.
+ * This is for the convenience that you can use one instance of
+ * CgnTimerDO class for multiple purpose,
+ * watching out different digital-out pins here and there.
+ * However, this class can monitor only one pin at a time.
+ * So if you want multiple timers to control multiple digital-out pins
+ * with different time offsets, you need to create two or more
+ * instances of CgnTimerDO class.
+**/
+class CgnTimerDO {
+  public:
+    CgnTimerDO();
+    void update();
+    void set(byte, uint32_t, bool);
+    byte get();
+    uint32_t until();
+
+  private:
+    byte pin;
+    uint32_t limit;
+    bool value;
+};
+
+/*!
  * @brief Emits asynchroneous tone output in a similar way to CgnDO class.
  *
  * In order to asynchroneously emit digital outputs,

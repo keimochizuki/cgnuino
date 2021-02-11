@@ -10,6 +10,8 @@ var searchData=
   ['cgnperiod',['CgnPeriod',['../classCgnPeriod.html',1,'']]],
   ['cgnstopwatch',['CgnStopwatch',['../classCgnStopwatch.html',1,'']]],
   ['cgnstrobe',['CgnStrobe',['../classCgnStrobe.html',1,'']]],
+  ['cgntimerao',['CgnTimerAO',['../classCgnTimerAO.html',1,'']]],
+  ['cgntimerdo',['CgnTimerDO',['../classCgnTimerDO.html',1,'']]],
   ['cgntone',['CgnTone',['../classCgnTone.html',1,'']]],
   ['cgnvaltiel',['CgnValtiel',['../classCgnValtiel.html',1,'']]]
 ];
