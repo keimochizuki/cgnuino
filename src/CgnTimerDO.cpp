@@ -20,7 +20,7 @@ CgnTimerDO::CgnTimerDO() {
  *       once inside \c loop function.
 **/
 void CgnTimerDO::update() {
-  if(millis() > limit) {
+  if(millis() >= limit) {
     digitalWrite(pin, value);
     limit = ULONG_MAX;
   }

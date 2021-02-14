@@ -20,7 +20,7 @@ CgnTimerAO::CgnTimerAO() {
  *       once inside \c loop function.
 **/
 void CgnTimerAO::update() {
-  if(millis() > limit) {
+  if(millis() >= limit) {
     analogWrite(pin, value);
     limit = ULONG_MAX;
   }

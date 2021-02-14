@@ -25,7 +25,7 @@ CgnAO::CgnAO(byte aoPin) {
  *       once inside \c loop function.
 **/
 void CgnAO::update() {
-  if(millis() > limit) {
+  if(millis() >= limit) {
     analogWrite(pin, 0);
     limit = ULONG_MAX;
   }

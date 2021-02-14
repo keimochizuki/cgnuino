@@ -35,7 +35,7 @@ CgnDO::CgnDO(byte firstPin, byte numberOfOutputs) {
 void CgnDO::update() {
   uint32_t cur = millis();
   for (int i = 0; i < n; i++) {
-    if(cur > limit[i]) {
+    if(cur >= limit[i]) {
       digitalWrite(first + i, LOW);
       limit[i] = ULONG_MAX;
     }
