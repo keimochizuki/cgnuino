@@ -25,7 +25,7 @@ CgnTone::CgnTone(byte tonePin) {
  *       once inside \c loop function.
 **/
 void CgnTone::update() {
-  if(millis() > limit) {
+  if(millis() >= limit) {
     noTone(pin);
     limit = ULONG_MAX;
   }
