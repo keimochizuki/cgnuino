@@ -34,13 +34,13 @@ CgnStrobe::CgnStrobe(byte firstPin, uint32_t strobeUs, bool sendTerminator) {
 /*!
  * @brief Emits arbitrary text by (8 + 1)-bit digital outputs.
  * @param txt Text to be put out.
+ * @return Time spent by strobing in [ms].
 **/
 uint32_t CgnStrobe::out(String txt) {
   bool tmp;
   byte n = txt.length();
-  uint32_t time;
+  uint32_t from = millis();
 
-  time = millis();
   for (int i = 0; i < n; i++) {
     //Serial.print(s.charAt(i));
     //Serial.print(" ");
@@ -66,7 +66,7 @@ uint32_t CgnStrobe::out(String txt) {
     digitalWrite(first + 8, LOW);
   }
 
-  return millis() - time;
+  return millis() - from;
 }
 
 void CgnStrobe::wait() {

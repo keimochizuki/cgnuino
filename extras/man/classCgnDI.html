@@ -98,9 +98,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a65c74487fcfa1f0073476ac6d1e7fc24"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnDI.html#a65c74487fcfa1f0073476ac6d1e7fc24">CgnDI</a> (byte, byte=1, byte=NULL, byte=2)</td></tr>
 <tr class="memdesc:a65c74487fcfa1f0073476ac6d1e7fc24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a65c74487fcfa1f0073476ac6d1e7fc24">More...</a><br /></td></tr>
 <tr class="separator:a65c74487fcfa1f0073476ac6d1e7fc24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95e8d70a404b9d6b05c562cc293ec39c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnDI.html#a95e8d70a404b9d6b05c562cc293ec39c">update</a> ()</td></tr>
-<tr class="memdesc:a95e8d70a404b9d6b05c562cc293ec39c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates DI buffer by current pin voltages.  <a href="#a95e8d70a404b9d6b05c562cc293ec39c">More...</a><br /></td></tr>
-<tr class="separator:a95e8d70a404b9d6b05c562cc293ec39c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18eddbd41db64887fcdc2d9ba1942de2"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnDI.html#a18eddbd41db64887fcdc2d9ba1942de2">update</a> ()</td></tr>
+<tr class="memdesc:a18eddbd41db64887fcdc2d9ba1942de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates DI buffer by current pin voltages.  <a href="#a18eddbd41db64887fcdc2d9ba1942de2">More...</a><br /></td></tr>
+<tr class="separator:a18eddbd41db64887fcdc2d9ba1942de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6aa03d3373b19a730ebe60c63102e2de"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnDI.html#a6aa03d3373b19a730ebe60c63102e2de">on</a> (byte=0)</td></tr>
 <tr class="memdesc:a6aa03d3373b19a730ebe60c63102e2de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <em>i-th</em> DI pin is on (active).  <a href="#a6aa03d3373b19a730ebe60c63102e2de">More...</a><br /></td></tr>
 <tr class="separator:a6aa03d3373b19a730ebe60c63102e2de"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,6 +195,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of the examined pin state. </dd></dl>
 
 </div>
 </div>
@@ -217,6 +218,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of the examined pin state. </dd></dl>
 
 </div>
 </div>
@@ -239,6 +241,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of the examined pin state. </dd></dl>
 
 </div>
 </div>
@@ -261,6 +264,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of the examined pin state. </dd></dl>
 
 </div>
 </div>
@@ -283,6 +287,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of the examined pin state. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="DI_8ino-example.html#a3">DI.ino</a>.</dd>
 </dl>
 </div>
@@ -306,22 +311,24 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of the examined pin state. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="DI_8ino-example.html#a2">DI.ino</a>, and <a class="el" href="SeqResp_8ino-example.html#a3">SeqResp.ino</a>.</dd>
 </dl>
 </div>
 </div>
-<a class="anchor" id="a95e8d70a404b9d6b05c562cc293ec39c"></a>
+<a class="anchor" id="a18eddbd41db64887fcdc2d9ba1942de2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CgnDI::update </td>
+          <td class="memname">uint32_t CgnDI::update </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Time separation between current and last <code>update</code> in [ms]. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>For a normal usage, this method is intended to be called once, and only once, inside <code>loop</code> function. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="DI_8ino-example.html#a1">DI.ino</a>, and <a class="el" href="SeqResp_8ino-example.html#a2">SeqResp.ino</a>.</dd>
 </dl>
@@ -334,7 +341,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 14 2021 10:04:27 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 21 2021 12:24:34 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

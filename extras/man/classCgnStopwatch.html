@@ -99,26 +99,59 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnStopwatch.html#a114446066d6bfdf30e90081c8791eadf">CgnStopwatch</a> ()</td></tr>
 <tr class="memdesc:a114446066d6bfdf30e90081c8791eadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
 <tr class="separator:a114446066d6bfdf30e90081c8791eadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2efe7f5c956b63131426ac293d9eba89"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2efe7f5c956b63131426ac293d9eba89"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnStopwatch.html#a2efe7f5c956b63131426ac293d9eba89">lap</a> ()</td></tr>
-<tr class="memdesc:a2efe7f5c956b63131426ac293d9eba89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows elapsed time in [ms] and resart the clock. <br /></td></tr>
+<tr class="memitem:a2efe7f5c956b63131426ac293d9eba89"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnStopwatch.html#a2efe7f5c956b63131426ac293d9eba89">lap</a> ()</td></tr>
+<tr class="memdesc:a2efe7f5c956b63131426ac293d9eba89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows elapsed time in [ms] and resart the clock.  <a href="#a2efe7f5c956b63131426ac293d9eba89">More...</a><br /></td></tr>
 <tr class="separator:a2efe7f5c956b63131426ac293d9eba89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87f3eb5cee29d4e622841df5b9f350b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87f3eb5cee29d4e622841df5b9f350b9"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnStopwatch.html#a87f3eb5cee29d4e622841df5b9f350b9">get</a> ()</td></tr>
-<tr class="memdesc:a87f3eb5cee29d4e622841df5b9f350b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows elapsed time in [ms] without resarting the clock. <br /></td></tr>
+<tr class="memitem:a87f3eb5cee29d4e622841df5b9f350b9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnStopwatch.html#a87f3eb5cee29d4e622841df5b9f350b9">get</a> ()</td></tr>
+<tr class="memdesc:a87f3eb5cee29d4e622841df5b9f350b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows elapsed time in [ms] without resarting the clock.  <a href="#a87f3eb5cee29d4e622841df5b9f350b9">More...</a><br /></td></tr>
 <tr class="separator:a87f3eb5cee29d4e622841df5b9f350b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>In behavioral tasks, it is incredibly common for you to count elapsed time from a given origin. Being self-explanatory from its name, <a class="el" href="classCgnStopwatch.html" title="Measures time difference in milliseconds. ">CgnStopwatch</a> class works as a stopwatch for that faculty. After construction, call <code>lap</code> method to obtain the time length from the current origin, and then resetting the clock (i.e., set current time point as a new origin). Use <code>get</code> method to check the clock while maintaining the present origin. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="Lchika_8ino-example.html#_a0">Lchika.ino</a>, <a class="el" href="LchikaWave_8ino-example.html#_a0">LchikaWave.ino</a>, and <a class="el" href="SeqResp_8ino-example.html#_a0">SeqResp.ino</a>.</dd>
-</dl></div><hr/>The documentation for this class was generated from the following files:<ul>
+</dl></div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a87f3eb5cee29d4e622841df5b9f350b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t CgnStopwatch::get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Time past from last <code>lap</code> in [ms]. </dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Lchika_8ino-example.html#a3">Lchika.ino</a>, and <a class="el" href="LchikaWave_8ino-example.html#a3">LchikaWave.ino</a>.</dd>
+</dl>
+</div>
+</div>
+<a class="anchor" id="a2efe7f5c956b63131426ac293d9eba89"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t CgnStopwatch::lap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Time past from last <code>lap</code> in [ms]. </dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Lchika_8ino-example.html#a4">Lchika.ino</a>, <a class="el" href="LchikaWave_8ino-example.html#a4">LchikaWave.ino</a>, and <a class="el" href="SeqResp_8ino-example.html#a4">SeqResp.ino</a>.</dd>
+</dl>
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="cgnuino_8h_source.html">cgnuino.h</a></li>
 <li>src/CgnStopwatch.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 14 2021 10:04:27 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 21 2021 12:24:34 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

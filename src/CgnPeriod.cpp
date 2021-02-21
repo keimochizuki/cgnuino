@@ -33,6 +33,7 @@ void CgnPeriod::set(String newPeriod, uint32_t lengthMs) {
 /*!
  * @brief Checks whether the current task period is \a s.
  * @param periodName Name of the candidate task period.
+ * @return Whether the current period matches the designated one.
 **/
 bool CgnPeriod::is(String periodName) {
   return period == periodName;
@@ -40,6 +41,7 @@ bool CgnPeriod::is(String periodName) {
 
 /*!
  * @brief Checks whether the current task period expired its time limitation.
+ * @return Whether time limitation of the current period has expired.
 **/
 bool CgnPeriod::expire() {
   return millis() > limit;
@@ -47,6 +49,7 @@ bool CgnPeriod::expire() {
 
 /*!
  * @brief Shows current task period.
+ * @return Name of the current period.
 **/
 String CgnPeriod::get() {
   return period;
@@ -54,6 +57,7 @@ String CgnPeriod::get() {
 
 /*!
  * @brief Shows the time limitation of the current task period.
+ * @return Time limiation of the current period.
 **/
 uint32_t CgnPeriod::until() {
   return limit;

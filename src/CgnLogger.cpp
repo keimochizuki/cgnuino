@@ -32,6 +32,7 @@ CgnLogger::CgnLogger(bool initBool, byte relaidPin, byte debounceMs) {
 /*!
  * @brief Updates boolean buffer by current value.
  * @param newBool New value of the logged boolean.
+ * @return Time separation between current and last \c update in [ms].
  * @note For a normal usage, this method is intended to be called
  *       once, and only once, inside \c loop function.
 **/
@@ -55,10 +56,12 @@ void CgnLogger::update(bool newBool) {
       }
     }
   }
+  return past;
 }
 
 /*!
  * @brief Checks whether current value is \c true.
+ * @return Result of the examined boolean state.
 **/
 bool CgnLogger::on() {
   return cur;
@@ -66,6 +69,7 @@ bool CgnLogger::on() {
 
 /*!
  * @brief Checks whether current value is \c false.
+ * @return Result of the examined boolean state.
 **/
 bool CgnLogger::off() {
   return !cur;
@@ -73,6 +77,7 @@ bool CgnLogger::off() {
 
 /*!
  * @brief Checks whether the buffer turned on in current loop.
+ * @return Result of the examined boolean state.
 **/
 bool CgnLogger::turnon() {
   return cur && !pre;
@@ -80,6 +85,7 @@ bool CgnLogger::turnon() {
 
 /*!
  * @brief Checks whether the buffer turned off in current loop.
+ * @return Result of the examined boolean state.
 **/
 bool CgnLogger::turnoff() {
   return !cur && pre;
@@ -87,6 +93,7 @@ bool CgnLogger::turnoff() {
 
 /*!
  * @brief Checks whether the buffer was changed from previous loop.
+ * @return Result of the examined boolean state.
 **/
 bool CgnLogger::change() {
   return cur != pre;
@@ -94,6 +101,7 @@ bool CgnLogger::change() {
 
 /*!
  * @brief Checks whether the buffer kept unchanged from previous loop.
+ * @return Result of the examined boolean state.
 **/
 bool CgnLogger::keep() {
   return cur == pre;

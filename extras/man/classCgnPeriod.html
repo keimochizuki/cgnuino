@@ -105,17 +105,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a314dc02f428d3a59c7f3dbae3d88a9d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#a314dc02f428d3a59c7f3dbae3d88a9d7">is</a> (String)</td></tr>
 <tr class="memdesc:a314dc02f428d3a59c7f3dbae3d88a9d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the current task period is <em>s</em>.  <a href="#a314dc02f428d3a59c7f3dbae3d88a9d7">More...</a><br /></td></tr>
 <tr class="separator:a314dc02f428d3a59c7f3dbae3d88a9d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e98f94890d61e49bdcf6800389e81a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e98f94890d61e49bdcf6800389e81a2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#a0e98f94890d61e49bdcf6800389e81a2">expire</a> ()</td></tr>
-<tr class="memdesc:a0e98f94890d61e49bdcf6800389e81a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the current task period expired its time limitation. <br /></td></tr>
+<tr class="memitem:a0e98f94890d61e49bdcf6800389e81a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#a0e98f94890d61e49bdcf6800389e81a2">expire</a> ()</td></tr>
+<tr class="memdesc:a0e98f94890d61e49bdcf6800389e81a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the current task period expired its time limitation.  <a href="#a0e98f94890d61e49bdcf6800389e81a2">More...</a><br /></td></tr>
 <tr class="separator:a0e98f94890d61e49bdcf6800389e81a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bf2e4007d1049ad19d25214420d2013"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bf2e4007d1049ad19d25214420d2013"></a>
-String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#a5bf2e4007d1049ad19d25214420d2013">get</a> ()</td></tr>
-<tr class="memdesc:a5bf2e4007d1049ad19d25214420d2013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows current task period. <br /></td></tr>
+<tr class="memitem:a5bf2e4007d1049ad19d25214420d2013"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#a5bf2e4007d1049ad19d25214420d2013">get</a> ()</td></tr>
+<tr class="memdesc:a5bf2e4007d1049ad19d25214420d2013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows current task period.  <a href="#a5bf2e4007d1049ad19d25214420d2013">More...</a><br /></td></tr>
 <tr class="separator:a5bf2e4007d1049ad19d25214420d2013"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3aa632ae76af8ae55d0733a75471c107"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3aa632ae76af8ae55d0733a75471c107"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#a3aa632ae76af8ae55d0733a75471c107">until</a> ()</td></tr>
-<tr class="memdesc:a3aa632ae76af8ae55d0733a75471c107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows the time limitation of the current task period. <br /></td></tr>
+<tr class="memitem:a3aa632ae76af8ae55d0733a75471c107"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnPeriod.html#a3aa632ae76af8ae55d0733a75471c107">until</a> ()</td></tr>
+<tr class="memdesc:a3aa632ae76af8ae55d0733a75471c107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows the time limitation of the current task period.  <a href="#a3aa632ae76af8ae55d0733a75471c107">More...</a><br /></td></tr>
 <tr class="separator:a3aa632ae76af8ae55d0733a75471c107"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -124,6 +121,39 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <p>There can be an occasion that you want to unlimitedly wait for some event to occur during a given task period (e.g., a button press during an inter-trial interval before beginning the next trial). In this case, you can set the length of the period to <code>-1</code>. Since the length of the period is defined as an unsigned long, setting it to <code>-1</code> cycles its value to the maximal value of unsigned long (i.e., 4294967295 ms). This corresponds to approximately 50 days, virtually meaning that the period lasts forever without time limitation. (Actually this is the default behavior of the <code>set</code> method when you omit designing the second argument.) </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="Period_8ino-example.html#_a0">Period.ino</a>.</dd>
 </dl></div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0e98f94890d61e49bdcf6800389e81a2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CgnPeriod::expire </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Whether time limitation of the current period has expired. </dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="Period_8ino-example.html#a3">Period.ino</a>.</dd>
+</dl>
+</div>
+</div>
+<a class="anchor" id="a5bf2e4007d1049ad19d25214420d2013"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String CgnPeriod::get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Name of the current period. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a314dc02f428d3a59c7f3dbae3d88a9d7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -143,6 +173,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the current period matches the designated one. </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="Period_8ino-example.html#a2">Period.ino</a>.</dd>
 </dl>
 </div>
@@ -181,6 +212,22 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </dl>
 </div>
 </div>
+<a class="anchor" id="a3aa632ae76af8ae55d0733a75471c107"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t CgnPeriod::until </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Time limiation of the current period. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="cgnuino_8h_source.html">cgnuino.h</a></li>
 <li>src/CgnPeriod.cpp</li>
@@ -188,7 +235,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 14 2021 10:04:27 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 21 2021 12:24:34 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

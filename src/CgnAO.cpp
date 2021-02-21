@@ -21,14 +21,19 @@ CgnAO::CgnAO(byte aoPin) {
 
 /*!
  * @brief Stops the analog output when finished determined time length of output.
+ * @return Difference between intended and actual output lengths in [ms].
+ *         \c ULONG_MAX is returned when termination of output did not occur.
  * @note For a normal usage, this method is intended to be called
  *       once inside \c loop function.
 **/
-void CgnAO::update() {
+uint32_t CgnAO::update() {
+  uint32_t d = ULONG_MAX;
   if(millis() >= limit) {
     analogWrite(pin, 0);
+    d = millis() - limit;
     limit = ULONG_MAX;
   }
+  return d;
 }
 
 /*!

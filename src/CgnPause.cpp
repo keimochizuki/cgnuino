@@ -23,10 +23,13 @@ CgnPause::CgnPause(byte pausePin, bool stopWhen, uint16_t pauseMs) {
 
 /*!
  * @brief Checks the designated digital-in pin for pausing.
+ * @return Time past by pausing in [ms].
 **/
-void CgnPause::check() {
+uint32_t CgnPause::check() {
+  uint32_t from = millis();
   while(digitalRead(pin) == b) {
     delay(cycle);
   }
+  return millis() - from;
 }
 

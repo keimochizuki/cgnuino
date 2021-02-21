@@ -21,6 +21,35 @@ constexpr byte N_CGNDI = 10; //!< Number of pins that can be simultaneously set 
 constexpr byte N_CGNDO = 10; //!< Number of pins that can be simultaneously set for a CgnDO instance.
 
 /*!
+ * @brief Emits asynchroneous analog-out in a similar way to CgnDO class.
+ *
+ * In order to asynchroneously emit digital outputs,
+ * cgnuino has CgnDO class dedicated to that purpose.
+ * The same demand for an analog output instead of digital outputs
+ * can be met by CgnAO class.
+ * The usage is almost identical to CgnDO class except that
+ * CgnAO class only use one out pin,
+ * instead of holding multiple analog-out pins.
+ * This is because GPIO pins with pulse width modulation functionality
+ * (virtual analog-out function in Arduino)
+ * are limited and implemented intermittently on the board,
+ * making the perservation of multiple analog-out pins impossible.
+ * Start analog output of a given length and strength by \c out method.
+ * Then repeatedly call \c update method so that it can terminate
+ * the output once a designated time length has passed.
+**/
+class CgnAO {
+  public:
+    CgnAO(byte);
+    uint32_t update();
+    void out(uint32_t, byte = 255);
+
+  private:
+    byte pin;
+    uint32_t limit;
+};
+
+/*!
  * @brief Communicates with external control apprication running on a secondary PC.
  *
  * In normal psychological experiments in humans,
@@ -130,35 +159,6 @@ class CgnControl {
 };
 
 /*!
- * @brief Emits asynchroneous analog-out in a similar way to CgnDO class.
- *
- * In order to asynchroneously emit digital outputs,
- * cgnuino has CgnDO class dedicated to that purpose.
- * The same demand for an analog output instead of digital outputs
- * can be met by CgnAO class.
- * The usage is almost identical to CgnDO class except that
- * CgnAO class only use one out pin,
- * instead of holding multiple analog-out pins.
- * This is because GPIO pins with pulse width modulation functionality
- * (virtual analog-out function in Arduino)
- * are limited and implemented intermittently on the board,
- * making the perservation of multiple analog-out pins impossible.
- * Start analog output of a given length and strength by \c out method.
- * Then repeatedly call \c update method so that it can terminate
- * the output once a designated time length has passed.
-**/
-class CgnAO {
-  public:
-    CgnAO(byte);
-    void update();
-    void out(uint32_t, byte = 255);
-
-  private:
-    byte pin;
-    uint32_t limit;
-};
-
-/*!
  * @brief Offers convenient digital-in buffering.
  *
  * Digital-in pins make Arduino boards detect signal changes
@@ -261,7 +261,7 @@ class CgnAO {
 class CgnDI {
   public:
     CgnDI(byte, byte = 1, byte = NULL, byte = 2);
-    void update();
+    uint32_t update();
     bool on(byte = 0);
     bool off(byte = 0);
     bool turnon(byte = 0);
@@ -350,7 +350,7 @@ class CgnDI {
 class CgnDO {
   public:
     CgnDO(byte, byte = 1);
-    void update();
+    uint32_t update();
     void out(byte, uint32_t);
 
   private:
@@ -433,7 +433,7 @@ class CgnData {
 class CgnLogger {
   public:
     CgnLogger(bool = false, byte = NULL, byte = 0);
-    void update(bool);
+    uint32_t update(bool);
     bool on();
     bool off();
     bool turnon();
@@ -492,7 +492,7 @@ class CgnLogger {
 class CgnPause {
   public:
     CgnPause(byte, bool = LOW, uint16_t = 100);
-    void check();
+    uint32_t check();
 
   private:
     byte pin;
@@ -708,7 +708,7 @@ class CgnStrobe {
 class CgnTimerAO {
   public:
     CgnTimerAO();
-    void update();
+    uint32_t update();
     void set(byte, uint32_t, byte);
     byte get();
     uint32_t until();
@@ -752,7 +752,7 @@ class CgnTimerAO {
 class CgnTimerDO {
   public:
     CgnTimerDO();
-    void update();
+    uint32_t update();
     void set(byte, uint32_t, bool);
     byte get();
     uint32_t until();
@@ -783,7 +783,7 @@ class CgnTimerDO {
 class CgnTone {
   public:
     CgnTone(byte);
-    void update();
+    uint32_t update();
     void out(uint32_t, uint16_t = 440);
 
   private:

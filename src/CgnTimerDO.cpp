@@ -16,14 +16,19 @@ CgnTimerDO::CgnTimerDO() {
 
 /*!
  * @brief Changes the digital output to a given value when determined time length has passed.
+ * @return Difference between intended and actual timer action in [ms].
+ *         \c ULONG_MAX is returned when timer action did not occur.
  * @note For a normal usage, this method is intended to be called
  *       once inside \c loop function.
 **/
-void CgnTimerDO::update() {
+uint32_t CgnTimerDO::update() {
+  uint32_t d = ULONG_MAX;
   if(millis() >= limit) {
     digitalWrite(pin, value);
+    d = millis() - limit;
     limit = ULONG_MAX;
   }
+  return d;
 }
 
 /*!
@@ -40,6 +45,7 @@ void CgnTimerDO::set(byte doPin, uint32_t timerMs, bool doValue) {
 
 /*!
  * @brief Shows the pin number currently monitored (returns 255 when not in use).
+ * @return Pin number of currently scheduled digital output.
 **/
 byte CgnTimerDO::get() {
   if (limit != ULONG_MAX) {
@@ -51,6 +57,7 @@ byte CgnTimerDO::get() {
 
 /*!
  * @brief Shows the time limitation of the current timer.
+ * @return Time limitation of currently scheduled digital output.
 **/
 uint32_t CgnTimerDO::until() {
   return limit;

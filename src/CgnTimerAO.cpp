@@ -16,14 +16,19 @@ CgnTimerAO::CgnTimerAO() {
 
 /*!
  * @brief Changes the analog output to a given value when determined time length has passed.
+ * @return Difference between intended and actual timer action in [ms].
+ *         \c ULONG_MAX is returned when timer action did not occur.
  * @note For a normal usage, this method is intended to be called
  *       once inside \c loop function.
 **/
-void CgnTimerAO::update() {
+uint32_t CgnTimerAO::update() {
+  uint32_t d = ULONG_MAX;
   if(millis() >= limit) {
     analogWrite(pin, value);
+    d = millis() - limit;
     limit = ULONG_MAX;
   }
+  return d;
 }
 
 /*!
@@ -40,6 +45,7 @@ void CgnTimerAO::set(byte aoPin, uint32_t timerMs, byte aoValue) {
 
 /*!
  * @brief Shows the pin number currently monitored (returns 255 when not in use).
+ * @return Pin number of currently scheduled analog output.
 **/
 byte CgnTimerAO::get() {
   if (limit != ULONG_MAX) {
@@ -51,6 +57,7 @@ byte CgnTimerAO::get() {
 
 /*!
  * @brief Shows the time limitation of the current timer.
+ * @return Time limitation of currently scheduled analog output.
 **/
 uint32_t CgnTimerAO::until() {
   return limit;
