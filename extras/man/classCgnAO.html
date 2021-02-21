@@ -98,9 +98,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4009606953408c0024b8d72d63846024"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnAO.html#a4009606953408c0024b8d72d63846024">CgnAO</a> (byte)</td></tr>
 <tr class="memdesc:a4009606953408c0024b8d72d63846024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Consructor.  <a href="#a4009606953408c0024b8d72d63846024">More...</a><br /></td></tr>
 <tr class="separator:a4009606953408c0024b8d72d63846024"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac083378c9169f1e668829cd9ca8d083a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnAO.html#ac083378c9169f1e668829cd9ca8d083a">update</a> ()</td></tr>
-<tr class="memdesc:ac083378c9169f1e668829cd9ca8d083a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the analog output when finished determined time length of output.  <a href="#ac083378c9169f1e668829cd9ca8d083a">More...</a><br /></td></tr>
-<tr class="separator:ac083378c9169f1e668829cd9ca8d083a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72fba84ea08c91f2422f65f4b3c5f666"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnAO.html#a72fba84ea08c91f2422f65f4b3c5f666">update</a> ()</td></tr>
+<tr class="memdesc:a72fba84ea08c91f2422f65f4b3c5f666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the analog output when finished determined time length of output.  <a href="#a72fba84ea08c91f2422f65f4b3c5f666">More...</a><br /></td></tr>
+<tr class="separator:a72fba84ea08c91f2422f65f4b3c5f666"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83f591e73d0708948f8663b0709cacd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnAO.html#a83f591e73d0708948f8663b0709cacd6">out</a> (uint32_t, byte=255)</td></tr>
 <tr class="memdesc:a83f591e73d0708948f8663b0709cacd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts an analog output from a pin for determined time length.  <a href="#a83f591e73d0708948f8663b0709cacd6">More...</a><br /></td></tr>
 <tr class="separator:a83f591e73d0708948f8663b0709cacd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,18 +164,19 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac083378c9169f1e668829cd9ca8d083a"></a>
+<a class="anchor" id="a72fba84ea08c91f2422f65f4b3c5f666"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CgnAO::update </td>
+          <td class="memname">uint32_t CgnAO::update </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Difference between intended and actual output lengths in [ms]. <code>ULONG_MAX</code> is returned when termination of output did not occur. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>For a normal usage, this method is intended to be called once inside <code>loop</code> function. </dd></dl>
 
 </div>
@@ -187,7 +188,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 14 2021 10:04:27 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 21 2021 12:24:34 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

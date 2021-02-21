@@ -29,17 +29,21 @@ CgnDO::CgnDO(byte firstPin, byte numberOfOutputs) {
 
 /*!
  * @brief Lowers down the pins that finished determined time length of output.
+ * @return Difference between intended and actual output lengths in [ms].
+ *         \c ULONG_MAX is returned when termination of output did not occur.
  * @note For a normal usage, this method is intended to be called
  *       once inside \c loop function.
 **/
-void CgnDO::update() {
-  uint32_t cur = millis();
+uint32_t CgnDO::update() {
+  uint32_t d = ULONG_MAX, cur = millis();
   for (int i = 0; i < n; i++) {
     if(cur >= limit[i]) {
       digitalWrite(first + i, LOW);
+      d = cur - limit[i];
       limit[i] = ULONG_MAX;
     }
   }
+  return d;
 }
 
 /*!

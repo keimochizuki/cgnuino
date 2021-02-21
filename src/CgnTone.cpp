@@ -21,14 +21,19 @@ CgnTone::CgnTone(byte tonePin) {
 
 /*!
  * @brief Stop the tone when finished determined time length of output.
+ * @return Difference between intended and actual tone length in [ms].
+ *         \c ULONG_MAX is returned when termination of tone did not occur.
  * @note For a normal usage, this method is intended to be called
  *       once inside \c loop function.
 **/
-void CgnTone::update() {
+uint32_t CgnTone::update() {
+  uint32_t d = ULONG_MAX;
   if(millis() >= limit) {
     noTone(pin);
+    d = millis() - limit;
     limit = ULONG_MAX;
   }
+  return d;
 }
 
 /*!

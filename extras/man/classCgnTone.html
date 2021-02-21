@@ -98,9 +98,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af07c4b98fd2f50b9c5bddfb04bfa658a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnTone.html#af07c4b98fd2f50b9c5bddfb04bfa658a">CgnTone</a> (byte)</td></tr>
 <tr class="memdesc:af07c4b98fd2f50b9c5bddfb04bfa658a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Consructor.  <a href="#af07c4b98fd2f50b9c5bddfb04bfa658a">More...</a><br /></td></tr>
 <tr class="separator:af07c4b98fd2f50b9c5bddfb04bfa658a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70c812f5ee77a54a9f7d5be3fd6c9547"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnTone.html#a70c812f5ee77a54a9f7d5be3fd6c9547">update</a> ()</td></tr>
-<tr class="memdesc:a70c812f5ee77a54a9f7d5be3fd6c9547"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the tone when finished determined time length of output.  <a href="#a70c812f5ee77a54a9f7d5be3fd6c9547">More...</a><br /></td></tr>
-<tr class="separator:a70c812f5ee77a54a9f7d5be3fd6c9547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a67d6b6bba25cf29cf1cff918f8257c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnTone.html#a8a67d6b6bba25cf29cf1cff918f8257c">update</a> ()</td></tr>
+<tr class="memdesc:a8a67d6b6bba25cf29cf1cff918f8257c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the tone when finished determined time length of output.  <a href="#a8a67d6b6bba25cf29cf1cff918f8257c">More...</a><br /></td></tr>
+<tr class="separator:a8a67d6b6bba25cf29cf1cff918f8257c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4379661f4fb726cb4e2c49e6b3260dc0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCgnTone.html#a4379661f4fb726cb4e2c49e6b3260dc0">out</a> (uint32_t, uint16_t=440)</td></tr>
 <tr class="memdesc:a4379661f4fb726cb4e2c49e6b3260dc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a tone out from a pin for determined time length.  <a href="#a4379661f4fb726cb4e2c49e6b3260dc0">More...</a><br /></td></tr>
 <tr class="separator:a4379661f4fb726cb4e2c49e6b3260dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,18 +164,19 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a70c812f5ee77a54a9f7d5be3fd6c9547"></a>
+<a class="anchor" id="a8a67d6b6bba25cf29cf1cff918f8257c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CgnTone::update </td>
+          <td class="memname">uint32_t CgnTone::update </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Difference between intended and actual tone length in [ms]. <code>ULONG_MAX</code> is returned when termination of tone did not occur. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>For a normal usage, this method is intended to be called once inside <code>loop</code> function. </dd></dl>
 
 </div>
@@ -187,7 +188,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 14 2021 10:04:27 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 21 2021 12:24:34 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

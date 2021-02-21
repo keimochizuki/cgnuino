@@ -20,6 +20,7 @@ CgnControl::CgnControl(char endOfLine) {
 
 /*!
  * @brief Checks the serial buffer for a new input line.
+ * @return Received value from the Serial input.
 **/
 String CgnControl::update() {
   int i;
@@ -55,6 +56,7 @@ String CgnControl::update() {
 
 /*!
  * @brief Shows decomposed code for the last serial input.
+ * @return Code for conditional branching received by last \c update execution.
 **/
 int CgnControl::getCode() {
   return c;
@@ -62,6 +64,7 @@ int CgnControl::getCode() {
 
 /*!
  * @brief Shows decomposed value for the last serial input.
+ * @return Value received by last \c update execution.
 **/
 String CgnControl::getValue() {
   return v;

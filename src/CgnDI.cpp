@@ -43,11 +43,12 @@ CgnDI::CgnDI(byte firstPin, byte numberOfInputs, byte relaidPin, byte debounceMs
 
 /*!
  * @brief Updates DI buffer by current pin voltages.
+ * @return Time separation between current and last \c update in [ms].
  * @note For a normal usage, this method is intended to be called
  *       once, and only once, inside \c loop function.
 **/
-void CgnDI::update() {
-  int past;
+uint32_t CgnDI::update() {
+  uint32_t past;
   past = millis() - last;
   last = millis();
 
@@ -69,11 +70,13 @@ void CgnDI::update() {
       }
     }
   }
+  return past;
 }
 
 /*!
  * @brief Checks whether @a i-th DI pin is on (active).
  * @param i Index of input you want to check.
+ * @return Result of the examined pin state.
 **/
 bool CgnDI::on(byte i) {
   return cur[i];
@@ -82,6 +85,7 @@ bool CgnDI::on(byte i) {
 /*!
  * @brief Checks whether @a i-th DI pin is off (inactive).
  * @param i Index of input you want to check.
+ * @return Result of the examined pin state.
 **/
 bool CgnDI::off(byte i) {
   return !cur[i];
@@ -90,6 +94,7 @@ bool CgnDI::off(byte i) {
 /*!
  * @brief Checks whether @a i-th DI pin was turned on in current loop.
  * @param i Index of input you want to check.
+ * @return Result of the examined pin state.
 **/
 bool CgnDI::turnon(byte i) {
   return cur[i] && !pre[i];
@@ -98,6 +103,7 @@ bool CgnDI::turnon(byte i) {
 /*!
  * @brief Checks whether @a i-th DI pin was turned off in current loop.
  * @param i Index of input you want to check.
+ * @return Result of the examined pin state.
 **/
 bool CgnDI::turnoff(byte i) {
   return !cur[i] && pre[i];
@@ -106,6 +112,7 @@ bool CgnDI::turnoff(byte i) {
 /*!
  * @brief Checks whether @a i-th DI pin was changed from previous loop.
  * @param i Index of input you want to check.
+ * @return Result of the examined pin state.
 **/
 bool CgnDI::change(byte i) {
   return cur[i] != pre[i];
@@ -114,6 +121,7 @@ bool CgnDI::change(byte i) {
 /*!
  * @brief Checks whether @a i-th DI pin kept unchanged from previous loop.
  * @param i Index of input you want to check.
+ * @return Result of the examined pin state.
 **/
 bool CgnDI::keep(byte i) {
   return cur[i] == pre[i];

@@ -32,6 +32,7 @@ void CgnValtiel::start() {
 
 /*!
  * @brief Show average length of past loops and count up the counter.
+ * @return Average length of \c loop in [ms].
  * @note For a normal usage, this method is intended to be called
  *       once, and only once, inside \c loop function.
 **/
@@ -48,6 +49,7 @@ float CgnValtiel::lap() {
 
 /*!
  * @brief Show maximal length of past loop in [ms].
+ * @return Maximal length of \c loop in [ms].
 **/
 uint32_t CgnValtiel::getMax() {
   return mx;
@@ -55,6 +57,7 @@ uint32_t CgnValtiel::getMax() {
 
 /*!
  * @brief Show minimal length of past loop in [ms].
+ * @return Minimal length of \c loop in [ms].
 **/
 uint32_t CgnValtiel::getMin() {
   return mn;

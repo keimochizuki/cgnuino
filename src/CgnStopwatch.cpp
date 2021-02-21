@@ -20,6 +20,7 @@ CgnStopwatch::CgnStopwatch() {
 
 /*!
  * @brief Shows elapsed time in [ms] and resart the clock.
+ * @return Time past from last \c lap in [ms].
 **/
 uint32_t CgnStopwatch::lap() {
   uint32_t tmp;
@@ -30,6 +31,7 @@ uint32_t CgnStopwatch::lap() {
 
 /*!
  * @brief Shows elapsed time in [ms] without resarting the clock.
+ * @return Time past from last \c lap in [ms].
 **/
 uint32_t CgnStopwatch::get() {
   return millis() - from;
