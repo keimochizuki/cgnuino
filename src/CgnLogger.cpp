@@ -36,7 +36,7 @@ CgnLogger::CgnLogger(bool initBool, byte relaidPin, byte debounceMs) {
  * @note For a normal usage, this method is intended to be called
  *       once, and only once, inside \c loop function.
 **/
-void CgnLogger::update(bool newBool) {
+uint32_t CgnLogger::update(bool newBool) {
   int past;
   past = millis() - last;
   last = millis();
