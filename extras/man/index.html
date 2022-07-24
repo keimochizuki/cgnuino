@@ -181,7 +181,7 @@ Control.ino</h2>
 </ul>
 <p>When executed, the LED starts to blink shortly every second (100 ms light and 900 ms dark alternation). Open up Serial Monitor on Arduino IDE. Then go to the text sending line. You can set the length of light period by sending <code>1</code>:XXXX and dark period by <code>2</code>:XXXX where XXXX is an arbitrary integer. For example, try sending <code>2</code>:400 and the blink will become twice quicker. Also if you send <code>p</code> (hit only one character <code>p</code> and then Enter), the blinking stops until you send <code>p</code> again.</p>
 <div class="image">
-<img src="Control_fzz.png" alt="Control_fzz.png"/>
+<img src="circuit_Control.png" alt="circuit_Control.png"/>
 </div>
 <h2><a class="anchor" id="s3ss3"></a>
 DI.ino</h2>
@@ -191,7 +191,7 @@ DI.ino</h2>
 </ul>
 <p>When executed, nothing happens. Open up Serial Monitor on Arduino IDE. When you push the switch, it should read "Pushed". When you release the button press, it should read "Released".</p>
 <div class="image">
-<img src="DI_fzz.png" alt="DI_fzz.png"/>
+<img src="circuit_DI.png" alt="circuit_DI.png"/>
 </div>
 <h2><a class="anchor" id="s3ss4"></a>
 Lchika.ino</h2>
@@ -201,7 +201,7 @@ Lchika.ino</h2>
 </ul>
 <p>When executed, the LED start to turn on and off every 500 ms.</p>
 <div class="image">
-<img src="Lchika_fzz.png" alt="Lchika_fzz.png"/>
+<img src="circuit_Lchika.png" alt="circuit_Lchika.png"/>
 </div>
 <h2><a class="anchor" id="s3ss5"></a>
 LchikaWave.ino</h2>
@@ -211,7 +211,7 @@ LchikaWave.ino</h2>
 </ul>
 <p>When executed, the four LEDs start to blink in each respective pace. Once in every two seconds, all the LEDs turn on, and then turn off at different timings.</p>
 <div class="image">
-<img src="LchikaWave_fzz.png" alt="LchikaWave_fzz.png"/>
+<img src="circuit_LchikaWave.png" alt="circuit_LchikaWave.png"/>
 </div>
 <h2><a class="anchor" id="s3ss6"></a>
 Logger.ino</h2>
@@ -228,7 +228,7 @@ Pause.ino</h2>
 </ul>
 <p>When executed, nothing happens. Open up Serial Monitor on Arduino IDE. You will see waving dot going right and left on the text lines. When you push the switch, progression of the program is halted by <a class="el" href="classCgnPause.html" title="Temporally pauses task progression by digital-in pin state. ">CgnPause</a> class so that the movement of the dot stops.</p>
 <div class="image">
-<img src="Pause_fzz.png" alt="Pause_fzz.png"/>
+<img src="circuit_Pause.png" alt="circuit_Pause.png"/>
 </div>
 <h2><a class="anchor" id="s3ss8"></a>
 Period.ino</h2>
@@ -246,7 +246,7 @@ SeqResp.ino</h2>
 </ul>
 <p>When executed, Arduino starts to wait for a bottun press. Open up Serial Monitor on Arduino IDE. Every time you press the switch, temporal interval between previous and current button press is displayed. Also you will see the LED to be turned on while you are pressing the button. This relaid output of button's state is automatically performed by <a class="el" href="classCgnDI.html" title="Offers convenient digital-in buffering. ">CgnDI</a> class.</p>
 <div class="image">
-<img src="SeqResp_fzz.png" alt="SeqResp_fzz.png"/>
+<img src="circuit_SeqResp.png" alt="circuit_SeqResp.png"/>
 </div>
 <h2><a class="anchor" id="s3ss10"></a>
 Strobe.ino</h2>
@@ -257,7 +257,7 @@ Strobe.ino</h2>
 <p>When executed, a text line of multiple characters is emitted once in every five seconds. This can be seen through short flash of LEDs, which is actually composed of turning on a combination of the first eight bits and then lighting of the last bit for strobing. Since this occurs in steps of 50000 us (i.e., 50 ms) flashes, lighting would be visible only shortly. For each emission, you can see the time taken to finish strobing on Serial Monitor.</p>
 <p>Needless to say, this lighting of LEDs is just for the presentation purpose. Actual usage of <a class="el" href="classCgnStrobe.html" title="Emits a text as one-by-one characters using (8 + 1)-bit digital-out. ">CgnStrobe</a> class is to send characters in a quick and temporally accurate way to external receiving devices. Therefore, these nine digital-out pins should be connected to digital-in pins of such external receiver with appropriate current-limiting resistors if needed. How quickly you can send characters depends on both Arduino's digital-out and external device's digital-in. Arduino is temporally accurate at minimum of 3 us. Power1401 data acquisition device from CED, for example, requires strobes longer than 1 us (longer is recommended though). So it should be fine to set strobe length as 10 us to send only one word really quickly. However, whether transmission of a longer text line in this fairly high frequency is secure or not depends on devices and environments. If you plan to send long texts, I think setting strobe length as, say, 500 or 1000 us will still be OK in a normal situation.</p>
 <div class="image">
-<img src="Strobe_fzz.png" alt="Strobe_fzz.png"/>
+<img src="circuit_Strobe.png" alt="circuit_Strobe.png"/>
 </div>
 <h2><a class="anchor" id="s3ss11"></a>
 Valtiel.ino</h2>
@@ -269,7 +269,7 @@ Valtiel.ino</h2>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 21 2021 12:33:16 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 24 2022 15:02:44 for cgnuino by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
